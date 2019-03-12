@@ -1,0 +1,89 @@
+{
+ "address": "1ZDELTA1DFtj69aDBX5fUQQzZH91k778L",
+ "address_index": 5648719,
+ "clone_root": "",
+ "cloneable": true,
+ "description": "A decentralized exchange (DEX) exclusively for the Zeronet.",
+ "favicon": "images/favicon.png",
+ "files": {
+  "LICENSE": {
+   "sha512": "298a09da0c4e5be3b3436cfeff855ee96585e316411e0ba7afbf893dba02b843",
+   "size": 1077
+  },
+  "README.md": {
+   "sha512": "b2a4c5185bd7ef8c00f8ab9cf8b1cbc65054dd43f4665ce9bf2c042ec5b99810",
+   "size": 214
+  },
+  "css/main.css": {
+   "sha512": "4f31981290b8f30c38294a0deef153a9dcda11e1867ae41512f6ec70266ed535",
+   "size": 538912
+  },
+  "data-default/data.json": {
+   "sha512": "19f080f96f4d51f8e047055d977a7659974011d1353ba0214cc6ea3ab080f3d3",
+   "size": 126
+  },
+  "data-default/users/content-default.json": {
+   "sha512": "0f23391384952142eb7f33e4bfd91efbfa41d4baf51498e31a04d52053d3c0f2",
+   "size": 464
+  },
+  "dbschema.json": {
+   "sha512": "51d6245cd3150b7f9b3f27675d290a3759eccdb70ecd65df9494f662889bf938",
+   "size": 630
+  },
+  "favicon.ico": {
+   "sha512": "7df0740e984744ce47e9f450ee21d47e6ae115a82b1c9c5541e0bce7f2797ab1",
+   "size": 4286
+  },
+  "images/favicon.png": {
+   "sha512": "70ee795e8a209b446af91c028389659cee3a301f8feb06fe12b40f7ef22ab3da",
+   "size": 436
+  },
+  "images/icon-128.png": {
+   "sha512": "0458d99e1705a50381f3a2d6b8b03d5747cd67e593e8d9da0ed634a8ff145b5b",
+   "size": 1643
+  },
+  "images/icon-32.png": {
+   "sha512": "70ee795e8a209b446af91c028389659cee3a301f8feb06fe12b40f7ef22ab3da",
+   "size": 436
+  },
+  "images/icon.png": {
+   "sha512": "d924dad79e3a0965bfdcd6ffe2789925f1ad72708648b2763c9b2d99b9ba98c3",
+   "size": 11051
+  },
+  "index.html": {
+   "sha512": "d39e89065c6fc90d76100b0a14de71500f02229c4ab442bc1c7773dc8dd81db4",
+   "size": 42023
+  },
+  "js/ZeroApp-LEGACY.js": {
+   "sha512": "020e5635d416b07476fcd211662e8b7d97df9c3eba2932f287f6232ab4edf9be",
+   "size": 13696
+  },
+  "js/main.js": {
+   "sha512": "bb8049447dc56d94294c7cc2dce4bb7568681c318ea1fdd1171ac6833565a81d",
+   "size": 1524
+  },
+  "package.json": {
+   "sha512": "38d9c384bf1ef28ef4d1f8720e94878547697bbb1b3f8f8b189095153b5b5d5e",
+   "size": 277
+  }
+ },
+ "ignore": "(\\.git|data/.*|templates/)",
+ "includes": {
+  "data/users/content.json": {
+   "signers": [],
+   "signers_required": 1
+  }
+ },
+ "inner_path": "content.json",
+ "modified": 1552402881,
+ "optional": "",
+ "postmessage_nonce_security": true,
+ "signers_sign": "HEerZ+dXyfrpO9vTtSTP4wE+4/w0ddV1jtTj5tb7bB75JZLoVSK2KlJd+msEpuRjtYNl7M5X7a+cvxsLxk7y1YQ=",
+ "signs": {
+  "1ZDELTA1DFtj69aDBX5fUQQzZH91k778L": "G/CZl994rM9XMtj8Nbf0CjuAWy8zROT3yIxd1a24C2EjGjynITiwy82vn74/3lfgoMvSqiySnEF2Zcebe0eV4S0="
+ },
+ "signs_required": 1,
+ "title": "ZeroDelta",
+ "viewport": "width=device-width, initial-scale=1.0",
+ "zeronet_version": "0.6.4"
+}
