@@ -104,7 +104,13 @@
                     <ul class="dropdown-menu dropdown-menu-right">
                         <li class="dropdown-item"><a href="http://riot.im/app" target="_blank"><i class="far fa-fw fa-comment" aria-hidden="true"></i> <span>[ Matrix ]</span></a></li>
                         <li class="dropdown-item"><a href="https://www.reddit.com/r/ZeroDelta" target="_blank"><i class="fab fa-fw fa-reddit-alien" aria-hidden="true"></i> Reddit</a></li>
-                        <li class="dropdown-item"><a href="https://ropsten.etherscan.io/address/0x96B1ba91CA895B56Efd81F32642eA797Fc6e0B89#code" target="_blank" target="_blank"><i class="far fa-fw fa-file-alt" aria-hidden="true"></i> Contract 0x96B1ba91CA.... <small class="text-success">(Latest 2019.03.04)</small></a></li>
+                        <li class="dropdown-item">
+                            <a href="https://ropsten.etherscan.io/address/0xEb3D8484D7996284c58EA9065CcFf22D8DE4e673#code" target="_blank" target="_blank">
+                                <i class="far fa-fw fa-file-alt" aria-hidden="true"></i>
+                                Contract 0xEb3D8484D7..
+                                <small class="text-success">(Latest 2019.03.12)</small>
+                            </a>
+                        </li>
                     </ul>
                 </li>
             </ul>
@@ -461,8 +467,8 @@
                                     <td>ETH</td>
                                 </tr>
                                 <tr>
-                                    <td colspan="3">
-                                        There are no orders here.
+                                    <td colspan="3" v-html="orders">
+                                        <!-- orders -->
                                     </td>
                                 </tr>
                         </table>
@@ -757,6 +763,9 @@
 <script src="https://cdn.0net.io/libs/bootstrap/4.0.0/js/bootstrap.js"></script>
 <script src="https://cdn.0net.io/libs/vue/2.5.17/js/vue.min.js"></script>
 <script src="https://cdn.0net.io/libs/zero-api/18.9.28/js/zero-api.js"></script>
+<script src="https://cdn.0net.io/libs/web3/1.0.0/js/web3.min.js"></script>
+<script src="https://cdn.0net.io/libs/moment/2.22.2/js/moment.min.js"></script>
+<script src="https://cdn.0net.io/libs/numeral/2.0.6/js/numeral.min.js"></script>
 
 <!-- Main JS -->
 <script src="js/main.js"></script>
