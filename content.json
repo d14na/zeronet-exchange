@@ -11,12 +11,16 @@
    "size": 1077
   },
   "README.md": {
-   "sha512": "b2a4c5185bd7ef8c00f8ab9cf8b1cbc65054dd43f4665ce9bf2c042ec5b99810",
+   "sha512": "0037b5718b8e48aa12c02e6f88fcef1c6adf2cc0b0cc0fa1e24a7e1cdc4612e6",
    "size": 214
   },
+  "abi/zeroDelta.json": {
+   "sha512": "fc20c1e0ca7892636fab8015f8b14c018447043f3325b616fabd4ae8d6eef494",
+   "size": 5646
+  },
   "css/main.css": {
-   "sha512": "4f31981290b8f30c38294a0deef153a9dcda11e1867ae41512f6ec70266ed535",
-   "size": 538912
+   "sha512": "b1b2c9bfa98aa6b97313c5dce992e156193813cf51f26f1ede01ef16216ff33c",
+   "size": 539231
   },
   "data-default/data.json": {
    "sha512": "19f080f96f4d51f8e047055d977a7659974011d1353ba0214cc6ea3ab080f3d3",
@@ -38,29 +42,21 @@
    "sha512": "70ee795e8a209b446af91c028389659cee3a301f8feb06fe12b40f7ef22ab3da",
    "size": 436
   },
-  "images/icon-128.png": {
-   "sha512": "0458d99e1705a50381f3a2d6b8b03d5747cd67e593e8d9da0ed634a8ff145b5b",
-   "size": 1643
-  },
-  "images/icon-32.png": {
-   "sha512": "70ee795e8a209b446af91c028389659cee3a301f8feb06fe12b40f7ef22ab3da",
-   "size": 436
-  },
   "images/icon.png": {
    "sha512": "d924dad79e3a0965bfdcd6ffe2789925f1ad72708648b2763c9b2d99b9ba98c3",
    "size": 11051
   },
   "index.html": {
-   "sha512": "d39e89065c6fc90d76100b0a14de71500f02229c4ab442bc1c7773dc8dd81db4",
-   "size": 42023
+   "sha512": "a27ed7c36ebc5956d2bd007eba8dd06af93b4cd2189f174e49fc7a09c7843207",
+   "size": 53330
   },
   "js/ZeroApp-LEGACY.js": {
    "sha512": "020e5635d416b07476fcd211662e8b7d97df9c3eba2932f287f6232ab4edf9be",
    "size": 13696
   },
   "js/main.js": {
-   "sha512": "bb8049447dc56d94294c7cc2dce4bb7568681c318ea1fdd1171ac6833565a81d",
-   "size": 1524
+   "sha512": "f8067325c7eee36384d23b77e1851fb9c37f1e555341082e1738d54e28f4d802",
+   "size": 9769
   },
   "package.json": {
    "sha512": "38d9c384bf1ef28ef4d1f8720e94878547697bbb1b3f8f8b189095153b5b5d5e",
@@ -75,12 +71,12 @@
   }
  },
  "inner_path": "content.json",
- "modified": 1552402881,
+ "modified": 1552445725,
  "optional": "",
  "postmessage_nonce_security": true,
  "signers_sign": "HEerZ+dXyfrpO9vTtSTP4wE+4/w0ddV1jtTj5tb7bB75JZLoVSK2KlJd+msEpuRjtYNl7M5X7a+cvxsLxk7y1YQ=",
  "signs": {
-  "1ZDELTA1DFtj69aDBX5fUQQzZH91k778L": "G/CZl994rM9XMtj8Nbf0CjuAWy8zROT3yIxd1a24C2EjGjynITiwy82vn74/3lfgoMvSqiySnEF2Zcebe0eV4S0="
+  "1ZDELTA1DFtj69aDBX5fUQQzZH91k778L": "G0uNAPRTJSJ7V/FY0GdoN3k3rvF630q5oV1yznolOXMWAUL/RV1VZk6f8PuxVyBCaHan5e9itjjSDkXUg1lus4A="
  },
  "signs_required": 1,
  "title": "ZeroDelta",

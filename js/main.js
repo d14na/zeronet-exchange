@@ -66,23 +66,48 @@ const vueAppManager = {
 
             console.info('App.() & Zero.() have loaded successfully!')
 
+            if (window.ethereum) {
+                window.web3 = new Web3(ethereum)
+
+                try {
+                    // Request account access if needed
+                    console.log('window.ethereum')
+
+                    ethereum.enable()
+                } catch (error) {
+                    // User denied account access...
+                }
+            } else if (window.web3) { // Legacy dapp browsers...
+                window.web3 = new Web3(web3.currentProvider)
+
+                console.log('window.currentProvider')
+                // Acccounts always exposed
+            } else { // Non-dapp browsers...
+                console.log('Non-Ethereum browser detected. You should consider trying MetaMask!')
+            }
+
             /* Initialize ethereum. */
-            const eth = window.ethereum
+            // const eth = window.ethereum
 
-            console.log('Ethereum', eth)
+            console.log('Web3', web3)
 
-            console.log('Selected address', eth.selectedAddress)
+            // console.log('Selected address', eth.selectedAddress)
 
-            const address = eth.selectedAddress
+            // const address = eth.selectedAddress
+            /* Retrieve accounts. */
+            const accounts = await web3.eth.getAccounts()
 
-            if (typeof address !== 'undefined') {
-                console.log('Address', address)
+            if (typeof accounts !== 'undefined') {
+                /* Set address. */
+                const defaultAddress = accounts[0]
 
-                this.profileAddress = address
+                console.log('Default address', defaultAddress)
+
+                this.profileAddress = defaultAddress
             }
         },
         async connectMetamask () {
-            console.log('Connecting Metamask..')
+            console.log('Connecting Metamask..', ethereum)
 
             const eth = await ethereum.enable()
                 .catch(_error => {
@@ -95,6 +120,59 @@ const vueAppManager = {
                         alert('Please refresh to Authorize ZeroDelta access to your Wallet.')
                     }
                 })
+
+            console.log('Address', ethereum.selectedAddress)
+            console.log('Network', ethereum.networkVersion)
+
+            const web3 = new Web3(ethereum)
+
+            console.log('WEB ETH', web3.eth)
+
+            // let signed = await web3.eth.sign('Hi there!', ethereum.selectedAddress)
+            // let signed = await web3.eth['personal'].sign('Hi there!', ethereum.selectedAddress)
+            // let signed = await web3.eth.sign('Hi there!', ethereum.selectedAddress)
+            //     .catch(_error => {
+            //         console.error('SIGN FAILED:', _error)
+            //     })
+
+            // console.log('SIGNED', signed)
+
+            // A JS library for recovering signatures:
+            // const sigUtil = require('eth-sig-util')
+            const msgParams = [{
+                type: 'string',
+                name: '₵a¢he Notice',
+                value: `Your authorization / signature is required to continue your request. ` +
+                       `Please review the details shown below, then click 'SIGN' when ready.`
+            }, {
+                type: 'string',
+                name: '₵a¢he Summary',
+                value: `I want $13.3723 worth of DAI` +
+                       `\nI am offering 561.8613 0GOLD` +
+                       `\nMy offer will expire in ~24 hours`
+            }]
+
+            // Get the current account:
+            web3.eth.getAccounts(function (err, accounts) {
+                if (!accounts) return
+                signMsg(msgParams, accounts[0])
+            })
+
+            function signMsg (msgParams, from) {
+                web3.currentProvider.sendAsync({
+                    method: 'eth_signTypedData',
+                    params: [ msgParams, from ],
+                    from,
+                }, function (err, result) {
+                    if (err) return console.error(err)
+
+                    if (result.error) {
+                        return console.error(result.error.message)
+                    }
+
+                    console.log('RESULT', result)
+                })
+            }
         },
         async _initOrderBook () {
             /* Initialize window.web3 global. */
