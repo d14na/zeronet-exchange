@@ -1,523 +1,747 @@
 <!DOCTYPE html>
-<!-- saved from url=(0070)https://etherdelta.com/#0x6ef5bca539a4a01157af842b4823f54f9f7e9968-ETH -->
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <!-- <script async="" src="./js/ed-main.js"></script> -->
-
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link href="./favicon.ico" rel="icon">
-
     <title>ZeroDelta</title>
 
+    <link href="./favicon.ico" rel="icon">
     <link href="./css/main.css" rel="stylesheet">
 </head>
 
 <body class="dark">
 
-<div id="app">
+<div id="app"> <!-- VueJs app container -->
+    <nav class="navbar navbar-light navbar-expand-lg">
+        <a class="navbar-brand" href="https://0net.xyz/zerodelta.bit">
+            Zero<span class="text-primary">Delta</span>
+        </a>
 
-<nav class="navbar navbar-light navbar-expand-lg">
-    <a class="navbar-brand" href="https://0net.xyz/zerodelta.bit">
-        Zero<span class="text-primary">Delta</span>
-    </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-divider"></li>
+                <li class="theme-selector nav-item">
+                    <a class="nav-link" href="javascript://" onclick="document.querySelector(&#39;body&#39;).classList.remove(&#39;light&#39;); document.querySelector(&#39;body&#39;).classList.add(&#39;dark&#39;);">
+                        <i class="fa fa-square" aria-hidden="true"></i>
+                    </a>
 
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-divider"></li>
-            <li class="theme-selector nav-item">
-                <a class="nav-link" href="javascript://" onclick="document.querySelector(&#39;body&#39;).classList.remove(&#39;light&#39;); document.querySelector(&#39;body&#39;).classList.add(&#39;dark&#39;);">
-                    <i class="fa fa-square" aria-hidden="true"></i>
-                </a>
+                    <a class="nav-link" href="javascript://" onclick="document.querySelector(&#39;body&#39;).classList.remove(&#39;dark&#39;); document.querySelector(&#39;body&#39;).classList.add(&#39;light&#39;);">
+                        <i class="far fa-square" aria-hidden="true"></i>
+                    </a>
+                </li>
+                <li class="nav-divider"></li>
+                <li class="nav-item dropdown" id="tokensDropdown">
+                    <a href="https://etherdelta.com/#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        ZeroGold (0GOLD)&nbsp;
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <form>
+                                <input type="search" class="form-control" id="searchToken" placeholder="Search...">
+                            </form>
+                        </li>
+                        <li role="separator" class="dropdown-divider"></li>
+                        <li>
+                            <h5 class="text-center text-info">TOP10 Tokens</h5>
+                        </li>
+                        <li role="separator" class="dropdown-divider"></li>
+                        <li class="dropdown-item btn text-primary">ZeroGold <small><small class="text-muted">[ STAEK <span class="text-primary">0GOLD</span> ]</small></small></li>
+                        <li class="dropdown-item btn text-primary">0xBitcoin Token <small><small class="text-muted">[ HODL <span class="text-primary">0xBTC</span> ]</small></small></li>
+                        <li class="dropdown-item btn text-primary">Dai Stablecoin <small><small class="text-muted">[ SPEDN <span class="text-primary">DAI</span> ]</small></small></li>
+                        <li class="dropdown-item btn text-primary">Bitcoin* <small><small class="text-muted">[ HODL <span class="text-primary">WBTC</span> ]</small></small></li>
+                        <li class="dropdown-item btn text-primary">Ethereum* <small><small class="text-muted">[ HODL <span class="text-primary">WETH</span> ]</small></small></li>
+                        <li class="dropdown-item btn text-primary text-center">load more tokens..</li>
+                        <li role="separator" class="dropdown-divider"></li>
+                        <li class="dropdown-item btn text-primary text-center">Add a custom token?</li>
+                    </ul>
+                </li>
+            </ul>
 
-                <a class="nav-link" href="javascript://" onclick="document.querySelector(&#39;body&#39;).classList.remove(&#39;dark&#39;); document.querySelector(&#39;body&#39;).classList.add(&#39;light&#39;);">
-                    <i class="far fa-square" aria-hidden="true"></i>
-                </a>
-            </li>
-            <li class="nav-divider"></li>
-            <li class="nav-item dropdown" id="tokensDropdown">
-                <a href="https://etherdelta.com/#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">ZeroGold&nbsp;</a>
-                <ul class="dropdown-menu">
-                    <li>
-                        <form>
-                            <input type="search" class="form-control" id="searchToken" placeholder="Search...">
-                        </form>
-                    </li>
-                    <li role="separator" class="dropdown-divider"></li>
-                    <li class="dropdown-item"><a href="javascript://">0GOLD <small><small class="text-danger">[ STAEK ]</small></small></a></li>
-                    <li class="dropdown-item"><a href="javascript://">0xBTC</a></li>
-                    <li class="dropdown-item"><a href="javascript://">DAI <small><small class="text-danger">[ SPEDN ]</small></small></a></li>
-                    <li class="dropdown-item"><a href="javascript://">WBTC</a></li>
-                    <li class="dropdown-item"><a href="javascript://">WETH <small><small class="text-danger">[ HODL ]</small></small></a></li>
-                    <li class="dropdown-item"><a href="javascript://">
-                        <span>Other</span>
-                    </a></li>
-                </ul>
-            </li>
-        </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="nav-item dropdown">
+                    <a href="javascript://" class="nav-link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <i class="far fa-user-circle"></i>&nbsp;<span data-trn-key="select_account">
+                        My Account
+                    </span></a>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                        <li class="active dropdown-item"><a href="javascript://">{{profileAddress}}&nbsp;<span class="badge badge-dark">0.013 ETH</span>&nbsp;<span class="badge badge-success">MetaMask</span></a></li>
+                        <li role="separator" class="dropdown-divider"></li>
+                        <li class="dropdown-item btn text-info"><i class="fa fa-fw fa-piggy-bank"></i> ₵a¢he IN <small><small class="text-danger">(ZeroCache Wallet)</small></small></li>
+                        <li class="dropdown-item btn text-info"><i class="fa fa-fw fa-money-check-alt"></i> ₵a¢he OUT <small><small class="text-danger">(ZeroCache Wallet)</small></small></li>
+                        <li class="dropdown-item btn text-info" @click="connectMetamask"><i class="fa fa-fw fa-plug"></i> Connect Metamask <small><small class="text-danger">(Web Wallet)</small></small></li>
+                        <li class="dropdown-item btn text-info"><i class="fa fa-fw fa-plug"></i> Connect Ledger Nano S <small><small class="text-danger">(Hardware Wallet)</small></small></li>
+                        <li class="dropdown-item btn text-info"><i class="fa fa-fw fa-plug"></i> Connect Trezor <small><small class="text-danger">(Hardware Wallet)</small></small></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="javascript://" class="nav-link text-primary" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-external-link-alt"></i>&nbsp;<span data-trn-key="tokens">
+                        Token Info
+                    </span></a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a href="javascript://" class="nav-link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-language"></i> English
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                        <li class="dropdown-item"><a href="javascript://"><span>English</span></a></li>
+                        <li class="dropdown-item"><span class="text-muted">中文</span></li>
+                        <li class="dropdown-item"><span class="text-muted">Español</span></li>
+                        <li class="dropdown-item"><span class="text-muted">한국어</span></li>
+                        <li class="dropdown-item"><span class="text-muted">русский</span></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a href="javascript://" class="nav-link text-danger" data-toggle="dropdown" role="button" aria-haspopup="true" data-offset="50,50" aria-expanded="false">
+                        <i class="far fa-life-ring"></i>&nbsp;<span>Need Help?</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                        <li class="dropdown-item"><a href="http://riot.im/app" target="_blank"><i class="far fa-fw fa-comment" aria-hidden="true"></i> <span>[ Matrix ]</span></a></li>
+                        <li class="dropdown-item"><a href="https://www.reddit.com/r/ZeroDelta" target="_blank"><i class="fab fa-fw fa-reddit-alien" aria-hidden="true"></i> Reddit</a></li>
+                        <li class="dropdown-item"><a href="https://ropsten.etherscan.io/address/0x96B1ba91CA895B56Efd81F32642eA797Fc6e0B89#code" target="_blank" target="_blank"><i class="far fa-fw fa-file-alt" aria-hidden="true"></i> Contract 0x96B1ba91CA.... <small class="text-success">(Latest 2019.03.04)</small></a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
 
-        <ul class="nav navbar-nav navbar-right">
-            <li class="nav-item dropdown">
-                <a href="javascript://" class="nav-link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                    <i class="far fa-user-circle"></i>&nbsp;<span data-trn-key="select_account">
-                    My Account
-                </span></a>
-                <ul class="dropdown-menu dropdown-menu-right">
-                    <li class="active dropdown-item"><a href="javascript://">{{profileAddress}}&nbsp;<span class="badge badge-dark">0.013 ETH</span>&nbsp;<span class="badge badge-success">MetaMask</span></a></li>
-                    <li role="separator" class="dropdown-divider"></li>
-                    <li class="dropdown-item btn text-info"><i class="fa fa-money-check-alt"></i> ₵a¢he IN <small><small class="text-danger">(ZeroCache Wallet)</small></small></li>
-                    <li class="dropdown-item btn text-info"><i class="fa fa-money-check-alt"></i> ₵a¢he OUT <small><small class="text-danger">(ZeroCache Wallet)</small></small></li>
-                    <li class="dropdown-item btn text-info" @click="connectMetamask">Connect Metamask <small><small class="text-danger">(Web Wallet)</small></small></li>
-                    <li class="dropdown-item btn text-info">Connect Ledger Nano S <small><small class="text-danger">(Hardware Wallet)</small></small></li>
-                    <li class="dropdown-item btn text-info">Connect Trezor <small><small class="text-danger">(Hardware Wallet)</small></small></li>
-                </ul>
-            </li>
-            <li class="nav-item">
-                <a href="javascript://" class="nav-link text-primary" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                    <i class="fa fa-external-link-alt"></i>&nbsp;<span data-trn-key="tokens">
-                    Token Info
-                </span></a>
-            </li>
-            <li class="nav-item dropdown">
-                <a href="javascript://" class="nav-link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                    <i class="fa fa-language"></i> English
-                </a>
-                <ul class="dropdown-menu dropdown-menu-right">
-                    <li class="dropdown-item"><a href="javascript://"><span>English</span></a></li>
-                    <li class="dropdown-item"><span class="text-muted">中文</span></li>
-                    <li class="dropdown-item"><span class="text-muted">Français</span></li>
-                    <li class="dropdown-item"><span class="text-muted">Español</span></li>
-                    <li class="dropdown-item"><span class="text-muted">한국어</span></li>
-                </ul>
-            </li>
-            <li class="nav-item dropdown">
-                <a href="javascript://" class="nav-link text-danger" data-toggle="dropdown" role="button" aria-haspopup="true" data-offset="50,50" aria-expanded="false">
-                    <i class="far fa-life-ring"></i>&nbsp;<span>Need Help?</span>
-                </a>
-                <ul class="dropdown-menu dropdown-menu-right">
-                    <li class="dropdown-item"><a href="http://riot.im/app" target="_blank"><i class="far fa-comment" aria-hidden="true"></i> <span>[ Matrix ]</span></a></li>
-                    <li class="dropdown-item"><a href="https://www.reddit.com/r/ZeroDelta" target="_blank"><i class="fab fa-reddit-alien" aria-hidden="true"></i> Reddit</a></li>
-                    <li class="dropdown-item"><a href="https://ropsten.etherscan.io/address/0x96B1ba91CA895B56Efd81F32642eA797Fc6e0B89#code" target="_blank" target="_blank"><i class="far fa-file-alt" aria-hidden="true"></i> Contract 0x96B1ba91CA.... <small class="text-success">(Latest 2019.03.04)</small></a></li>
-                </ul>
-            </li>
-        </ul>
-    </div>
-</nav>
+    <div class="trading-cont">
+        <div class="vertical-split">
+            <div class="component">
+                <div class="component-header trn" data-trn-key="balance">Balance</div>
 
-<div class="trading-cont">
-    <div class="vertical-split">
-        <div class="component">
-            <div class="component-header trn" data-trn-key="balance">Balance</div>
+                <div id="balance">
+                    <div class="component-tabs nav-header">
+                        <ul class="nav" role="tablist">
+                            <li role="presentation" class="nav-item">
+                                <a href="https://etherdelta.com/#deposit" aria-controls="deposit" role="tab" data-toggle="tab" class="active nav-link trn" data-trn-key="deposit" data-original-title="" title="">Deposit</a>
+                            </li>
+                            <li role="presentation" class="nav-item">
+                                <a href="https://etherdelta.com/#withdraw" aria-controls="withdraw" role="tab" data-toggle="tab" class="nav-link trn" data-trn-key="withdraw" data-original-title="" title="">Withdraw</a>
+                            </li>
+                            <li role="presentation" class="nav-item">
+                                <a href="https://etherdelta.com/#transfer" aria-controls="transfer" role="tab" data-toggle="tab" class="nav-link trn" data-trn-key="transfer" data-original-title="" title="">Transfer</a>
+                            </li>
+                        </ul>
+                    </div>
 
-            <div id="balance">
+                    <div>
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane active" id="deposit">
+                                <table class="table table-borderless table-balances">
+                                    <thead>
+                                        <tr>
+                                            <th>Token</th>
+                                            <th>₵a¢hed OUT</th>
+                                            <th>₵a¢hed IN</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <a href="javascript://">ZeroGold</a>
+                                            </td>
+                                            <td>
+                                                <span>0.000</span>
+                                            </td>
+                                            <td>
+                                                <span>0.000</span>
+                                            </td>
+                                        </tr>
+                                        <tr class="balance-form">
+                                            <td colspan="2">
+                                                <div class="form-group">
+                                                    <label for="ZeroGolddeposit">Deposit ZeroGold</label>
+                                                    <input type="text" class="form-control form-control-sm trn" id="ZeroGolddeposit" placeholder="Amount" data-trn-key-placeholder="amount" data-trn-key="">
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <button type="button" class="btn btn-info btn-sm trn balance-inline" data-toggle="tooltip" data-placement="bottom" title="" data-trn-key-title="deposit_tab" data-trn-key="deposit" data-original-title="Use this to deposit from your personal Ethereum wallet (&quot;Wallet&quot; column) to the {{ appTitle }} smart contract (&quot;{{ appTitle }}&quot; column).">
+                                                    Deposit
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <a href="javascript://">DAI</a>
+                                            </td>
+                                            <td>
+                                                <span data-toggle="tooltip" data-placement="bottom" title="" data-original-title="0.013068495718">0.013</span>
+                                            </td>
+                                            <td>
+                                                <span data-toggle="tooltip" data-placement="bottom" title="" data-original-title="0.000000000000">0.000</span>
+                                            </td>
+                                        </tr>
+                                        <tr class="balance-form">
+                                            <td colspan="2">
+                                                <div class="form-group">
+                                                    <label for="ETHdeposit">Deposit DAI</label>
+                                                    <input type="text" class="form-control form-control-sm trn" id="ETHdeposit" placeholder="Amount" data-trn-key-placeholder="amount" data-trn-key="">
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <button type="button" class="btn btn-info btn-sm trn balance-inline" data-toggle="tooltip" data-placement="bottom" title="" data-trn-key-title="deposit_tab" data-trn-key="deposit" data-original-title="Use this to deposit from your personal Ethereum wallet (&quot;Wallet&quot; column) to the {{ appTitle }} smart contract (&quot;{{ appTitle }}&quot; column).">
+                                                    Deposit
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div role="tabpanel" class="tab-pane" id="withdraw">
+                                <table class="table table-borderless table-balances">
+                                    <thead>
+                                        <tr>
+                                            <th data-trn-key="token">Token</th>
+                                            <th data-toggle="tooltip" data-placement="bottom" title="" data-trn-key-title="balance_wallet_tooltip" data-trn-key="balance_in_your_wallet" data-original-title="This is the balance in your personal Ethereum wallet, which you have connected to {{ appTitle }} in the account dropdown (upper right).">₵a¢hed OUT</th>
+                                            <th data-toggle="tooltip" data-placement="bottom" title="" data-trn-key-title="balance_etherdelta_tooltip" data-trn-key="balance_etherdelta" data-original-title="This is the balance you have deposited from your personal Ethereum wallet to the {{ appTitle }} smart contract.">₵a¢hed IN</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <a href="javascript://">ZeroGold</a>
+                                            </td>
+                                            <td>
+                                                <span data-toggle="tooltip" data-placement="bottom" title="" data-original-title="0.000000000000">0.000</span>
+                                            </td>
+                                            <td>
+                                                <span data-toggle="tooltip" data-placement="bottom" title="" data-original-title="0.000000000000">0.000</span>
+                                            </td>
+                                        </tr>
+                                        <tr class="balance-form">
+                                            <td colspan="2">
+                                                <div class="form-group">
+                                                    <label for="ZeroGoldwithdrawl">Withdraw ZeroGold</label>
+                                                    <input type="text" class="form-control form-control-sm trn" id="ZeroGoldwithdrawl" placeholder="Amount" data-trn-key-placeholder="amount" data-trn-key="">
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <button type="button" class="btn btn-info btn-sm trn balance-inline" data-toggle="tooltip" data-placement="bottom" title="" data-trn-key-title="withdraw_tab" data-trn-key="withdraw" data-original-title="Use this to withdraw from the {{ appTitle }} smart contract (&quot;{{ appTitle }}&quot; column) to your personal Ethereum wallet (&quot;Wallet&quot; column).">Withdraw</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <a href="javascript://">ETH</a>
+                                            </td>
+                                            <td>
+                                                <span data-toggle="tooltip" data-placement="bottom" title="" data-original-title="0.013068495718">0.013</span>
+                                            </td>
+                                            <td>
+                                                <span data-toggle="tooltip" data-placement="bottom" title="" data-original-title="0.000000000000">0.000</span>
+                                            </td>
+                                        </tr>
+                                        <tr class="balance-form">
+                                            <td colspan="2">
+                                                <div class="form-group">
+                                                    <label for="ETHwithdrawl">Withdraw ETH</label>
+                                                    <input type="text" class="form-control form-control-sm trn" id="ETHwithdrawl" placeholder="Amount" data-trn-key-placeholder="amount" data-trn-key="">
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <button type="button" class="btn btn-info btn-sm trn balance-inline" data-toggle="tooltip" data-placement="bottom" title="" data-trn-key-title="withdraw_tab" data-trn-key="withdraw" data-original-title="Use this to withdraw from the {{ appTitle }} smart contract (&quot;{{ appTitle }}&quot; column) to your personal Ethereum wallet (&quot;Wallet&quot; column).">
+                                                    Withdraw
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div role="tabpanel" class="tab-pane" id="transfer">
+                                <table class="table table-borderless table-balances">
+                                    <thead>
+                                        <tr>
+                                            <th data-trn-key="token">Token</th>
+                                            <th data-toggle="tooltip" data-placement="bottom" title="" data-trn-key-title="balance_wallet_tooltip" data-trn-key="balance_in_your_wallet" data-original-title="This is the balance in your personal Ethereum wallet, which you have connected to {{ appTitle }} in the account dropdown (upper right).">
+                                                Wallet
+                                            </th>
+                                            <th data-toggle="tooltip" data-placement="bottom" title="" data-trn-key-title="balance_etherdelta_tooltip" data-trn-key="balance_etherdelta" data-original-title="This is the balance you have deposited from your personal Ethereum wallet to the {{ appTitle }} smart contract.">{{ appTitle }}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <a href="javascript://">ZeroGold</a>
+                                            </td>
+                                            <td>
+                                                <span data-toggle="tooltip" data-placement="bottom" title="" data-original-title="0.000000000000">0.000</span>
+                                            </td>
+                                            <td>
+                                                <span data-toggle="tooltip" data-placement="bottom" title="" data-original-title="0.000000000000">0.000</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="3">
+                                                <div class="balance-inline-form">
+                                                    <div class="form-group">
+                                                        <label for="ZeroGoldtransfer1" data-trn-key="amount">Amount</label>
+                                                        <input type="text" class="form-control form-control-sm" id="ZeroGoldtransfer1">
+                                                    </div>
+                                                    <span>to</span>
+                                                    <div class="form-group">
+                                                        <label for="ZeroGoldtransfer2" data-trn-key="address">Address</label>
+                                                        <input type="text" class="form-control form-control-sm" id="ZeroGoldtransfer2" value="">
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr class="balance-form">
+                                            <td colspan="3">
+                                                <button type="button" class="btn btn-info btn-sm trn balance-below" data-toggle="tooltip" data-placement="bottom" title="" data-trn-key-title="transfer_tab" data-trn-key="transfer" data-original-title="Use this to transfer from your personal Ethereum wallet (&quot;Wallet&quot; column) to any other wallet.">
+                                                    Transfer
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <a href="javascript://">ETH</a>
+                                            </td>
+                                            <td>
+                                                <span data-toggle="tooltip" data-placement="bottom" title="" data-original-title="0.013068495718">0.013</span>
+                                            </td>
+                                            <td>
+                                                <span data-toggle="tooltip" data-placement="bottom" title="" data-original-title="0.000000000000">0.000</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="3">
+                                                <div class="balance-inline-form">
+                                                    <div class="form-group">
+                                                        <label for="ETHtransfer1" data-trn-key="amount">Amount</label>
+                                                        <input type="text" class="form-control form-control-sm" id="ETHtransfer1">
+                                                    </div>
+                                                    <span>to</span>
+                                                    <div class="form-group">
+                                                        <label for="ETHtransfer2" data-trn-key="address">Address</label>
+                                                        <input type="text" class="form-control form-control-sm" id="ETHtransfer2" value="">
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr class="balance-form">
+                                            <td colspan="3">
+                                                <button type="button" class="btn btn-info btn-sm trn balance-below" data-toggle="tooltip" data-placement="bottom" title="" data-trn-key-title="transfer_tab" data-trn-key="transfer" data-original-title="Use this to transfer from your personal Ethereum wallet (&quot;Wallet&quot; column) to any other wallet.">
+                                                    Transfer
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="balance-warning">
+                            <p>
+                                Make sure <a href="javascript://">ZeroGold</a> is the token you actually want to trade.
+                                Multiple tokens can share the same name.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+    <!-- REFACTOR BELOW -->
+
+            <div class="component">
+                <div class="component-header trn" data-trn-key="buy_sell">Buy/Sell</div>
                 <div class="component-tabs nav-header">
                     <ul class="nav" role="tablist">
                         <li role="presentation" class="nav-item">
-                            <a href="https://etherdelta.com/#deposit" aria-controls="deposit" role="tab" data-toggle="tab" class="active nav-link trn" data-trn-key="deposit" data-original-title="" title="">Deposit</a>
+                            <a href="https://etherdelta.com/#buy" aria-controls="buy" role="tab" data-toggle="tab" class="active nav-link trn" data-trn-key="buy" data-original-title="" title="">Buy Order</a>
                         </li>
-                        <li role="presentation" class="nav-item">
-                            <a href="https://etherdelta.com/#withdraw" aria-controls="withdraw" role="tab" data-toggle="tab" class="nav-link trn" data-trn-key="withdraw" data-original-title="" title="">Withdraw</a>
-                        </li>
-                        <li role="presentation" class="nav-item">
-                            <a href="https://etherdelta.com/#transfer" aria-controls="transfer" role="tab" data-toggle="tab" class="nav-link trn" data-trn-key="transfer" data-original-title="" title="">Transfer</a>
+                        <li role="presentation" claxss="nav-item">
+                            <a href="https://etherdelta.com/#sell" aria-controls="sell" role="tab" data-toggle="tab" class="nav-link trn" data-trn-key="sell" data-original-title="" title="">Sell Order</a>
                         </li>
                     </ul>
                 </div>
 
-                <div>
-                    <div class="tab-content">
-                        <div role="tabpanel" class="tab-pane active" id="deposit">
-                            <table class="table table-borderless table-balances">
-                                <thead>
-                                    <tr>
-                                        <th>Token</th>
-                                        <th>₵a¢hed OUT</th>
-                                        <th>₵a¢hed IN</th>
-                                    </tr>
-                                </thead>
-
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <a href="javascript://">ZeroGold</a>
-                                        </td>
-                                        <td>
-                                            <span>0.000</span>
-                                        </td>
-                                        <td>
-                                            <span>0.000</span>
-                                        </td>
-                                    </tr>
-                                    <tr class="balance-form">
-                                        <td colspan="2">
-                                            <div class="form-group">
-                                                <label for="ZeroGolddeposit">Deposit ZeroGold</label>
-                                                <input type="text" class="form-control form-control-sm trn" id="ZeroGolddeposit" placeholder="Amount" data-trn-key-placeholder="amount" data-trn-key="">
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <button type="button" class="btn btn-info btn-sm trn balance-inline" data-toggle="tooltip" data-placement="bottom" title="" data-trn-key-title="deposit_tab" data-trn-key="deposit" data-original-title="Use this to deposit from your personal Ethereum wallet (&quot;Wallet&quot; column) to the {{ appTitle }} smart contract (&quot;{{ appTitle }}&quot; column).">
-                                                Deposit
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <a href="javascript://">DAI</a>
-                                        </td>
-                                        <td>
-                                            <span data-toggle="tooltip" data-placement="bottom" title="" data-original-title="0.013068495718">0.013</span>
-                                        </td>
-                                        <td>
-                                            <span data-toggle="tooltip" data-placement="bottom" title="" data-original-title="0.000000000000">0.000</span>
-                                        </td>
-                                    </tr>
-                                    <tr class="balance-form">
-                                        <td colspan="2">
-                                            <div class="form-group">
-                                                <label for="ETHdeposit">Deposit DAI</label>
-                                                <input type="text" class="form-control form-control-sm trn" id="ETHdeposit" placeholder="Amount" data-trn-key-placeholder="amount" data-trn-key="">
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <button type="button" class="btn btn-info btn-sm trn balance-inline" data-toggle="tooltip" data-placement="bottom" title="" data-trn-key-title="deposit_tab" data-trn-key="deposit" data-original-title="Use this to deposit from your personal Ethereum wallet (&quot;Wallet&quot; column) to the {{ appTitle }} smart contract (&quot;{{ appTitle }}&quot; column).">
-                                                Deposit
-                                            </button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-
-                        <div role="tabpanel" class="tab-pane" id="withdraw">
-                            <table class="table table-borderless table-balances">
-                                <thead>
-                                    <tr>
-                                        <th data-trn-key="token">Token</th>
-                                        <th data-toggle="tooltip" data-placement="bottom" title="" data-trn-key-title="balance_wallet_tooltip" data-trn-key="balance_in_your_wallet" data-original-title="This is the balance in your personal Ethereum wallet, which you have connected to {{ appTitle }} in the account dropdown (upper right).">₵a¢hed OUT</th>
-                                        <th data-toggle="tooltip" data-placement="bottom" title="" data-trn-key-title="balance_etherdelta_tooltip" data-trn-key="balance_etherdelta" data-original-title="This is the balance you have deposited from your personal Ethereum wallet to the {{ appTitle }} smart contract.">₵a¢hed IN</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <a href="javascript://">ZeroGold</a>
-                                        </td>
-                                        <td>
-                                            <span data-toggle="tooltip" data-placement="bottom" title="" data-original-title="0.000000000000">0.000</span>
-                                        </td>
-                                        <td>
-                                            <span data-toggle="tooltip" data-placement="bottom" title="" data-original-title="0.000000000000">0.000</span>
-                                        </td>
-                                    </tr>
-                                    <tr class="balance-form">
-                                        <td colspan="2">
-                                            <div class="form-group">
-                                                <label for="ZeroGoldwithdrawl">Withdraw ZeroGold</label>
-                                                <input type="text" class="form-control form-control-sm trn" id="ZeroGoldwithdrawl" placeholder="Amount" data-trn-key-placeholder="amount" data-trn-key="">
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <button type="button" class="btn btn-info btn-sm trn balance-inline" data-toggle="tooltip" data-placement="bottom" title="" data-trn-key-title="withdraw_tab" data-trn-key="withdraw" data-original-title="Use this to withdraw from the {{ appTitle }} smart contract (&quot;{{ appTitle }}&quot; column) to your personal Ethereum wallet (&quot;Wallet&quot; column).">Withdraw</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <a href="javascript://">ETH</a>
-                                        </td>
-                                        <td>
-                                            <span data-toggle="tooltip" data-placement="bottom" title="" data-original-title="0.013068495718">0.013</span>
-                                        </td>
-                                        <td>
-                                            <span data-toggle="tooltip" data-placement="bottom" title="" data-original-title="0.000000000000">0.000</span>
-                                        </td>
-                                    </tr>
-                                    <tr class="balance-form">
-                                        <td colspan="2">
-                                            <div class="form-group">
-                                                <label for="ETHwithdrawl">Withdraw ETH</label>
-                                                <input type="text" class="form-control form-control-sm trn" id="ETHwithdrawl" placeholder="Amount" data-trn-key-placeholder="amount" data-trn-key="">
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <button type="button" class="btn btn-info btn-sm trn balance-inline" data-toggle="tooltip" data-placement="bottom" title="" data-trn-key-title="withdraw_tab" data-trn-key="withdraw" data-original-title="Use this to withdraw from the {{ appTitle }} smart contract (&quot;{{ appTitle }}&quot; column) to your personal Ethereum wallet (&quot;Wallet&quot; column).">
-                                                Withdraw
-                                            </button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-
-                        <div role="tabpanel" class="tab-pane" id="transfer">
-                            <table class="table table-borderless table-balances">
-                                <thead>
-                                    <tr>
-                                        <th data-trn-key="token">Token</th>
-                                        <th data-toggle="tooltip" data-placement="bottom" title="" data-trn-key-title="balance_wallet_tooltip" data-trn-key="balance_in_your_wallet" data-original-title="This is the balance in your personal Ethereum wallet, which you have connected to {{ appTitle }} in the account dropdown (upper right).">
-                                            Wallet
-                                        </th>
-                                        <th data-toggle="tooltip" data-placement="bottom" title="" data-trn-key-title="balance_etherdelta_tooltip" data-trn-key="balance_etherdelta" data-original-title="This is the balance you have deposited from your personal Ethereum wallet to the {{ appTitle }} smart contract.">{{ appTitle }}</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <a href="javascript://">ZeroGold</a>
-                                        </td>
-                                        <td>
-                                            <span data-toggle="tooltip" data-placement="bottom" title="" data-original-title="0.000000000000">0.000</span>
-                                        </td>
-                                        <td>
-                                            <span data-toggle="tooltip" data-placement="bottom" title="" data-original-title="0.000000000000">0.000</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="3">
-                                            <div class="balance-inline-form">
-                                                <div class="form-group">
-                                                    <label for="ZeroGoldtransfer1" data-trn-key="amount">Amount</label>
-                                                    <input type="text" class="form-control form-control-sm" id="ZeroGoldtransfer1">
-                                                </div>
-                                                <span>to</span>
-                                                <div class="form-group">
-                                                    <label for="ZeroGoldtransfer2" data-trn-key="address">Address</label>
-                                                    <input type="text" class="form-control form-control-sm" id="ZeroGoldtransfer2" value="">
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr class="balance-form">
-                                        <td colspan="3">
-                                            <button type="button" class="btn btn-info btn-sm trn balance-below" data-toggle="tooltip" data-placement="bottom" title="" data-trn-key-title="transfer_tab" data-trn-key="transfer" data-original-title="Use this to transfer from your personal Ethereum wallet (&quot;Wallet&quot; column) to any other wallet.">
-                                                Transfer
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <a href="javascript://">ETH</a>
-                                        </td>
-                                        <td>
-                                            <span data-toggle="tooltip" data-placement="bottom" title="" data-original-title="0.013068495718">0.013</span>
-                                        </td>
-                                        <td>
-                                            <span data-toggle="tooltip" data-placement="bottom" title="" data-original-title="0.000000000000">0.000</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="3">
-                                            <div class="balance-inline-form">
-                                                <div class="form-group">
-                                                    <label for="ETHtransfer1" data-trn-key="amount">Amount</label>
-                                                    <input type="text" class="form-control form-control-sm" id="ETHtransfer1">
-                                                </div>
-                                                <span>to</span>
-                                                <div class="form-group">
-                                                    <label for="ETHtransfer2" data-trn-key="address">Address</label>
-                                                    <input type="text" class="form-control form-control-sm" id="ETHtransfer2" value="">
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr class="balance-form">
-                                        <td colspan="3">
-                                            <button type="button" class="btn btn-info btn-sm trn balance-below" data-toggle="tooltip" data-placement="bottom" title="" data-trn-key-title="transfer_tab" data-trn-key="transfer" data-original-title="Use this to transfer from your personal Ethereum wallet (&quot;Wallet&quot; column) to any other wallet.">
-                                                Transfer
-                                            </button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="buy">
+                        <form>
+                            <div class="form-group">
+                                <label for="buyAmount" data-trn-key="amount_to_buy">Amount to buy</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control form-control-sm" id="buyAmount">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">ZeroGold</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="buyPrice" data-trn-key="price">Price</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control form-control-sm trn" id="buyPrice" data-trn-key="">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">ETH</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="buyTotal" data-trn-key="total">Total</label>
+                                <input type="text" id="buyTotal" class="form-control form-control-sm" value="" readonly="">
+                            </div>
+                            <div class="form-group">
+                                <label for="buyExpires" data-toggle="tooltip" data-placement="bottom" title="" data-trn-key-title="expires_explanation" data-trn-key="expires" data-original-title="The number of Ethereum blocks until the order automatically expires. (14 seconds per block.)">Expires</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control form-control-sm" id="buyExpires" value="10000">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text trn" data-trn-key="number_of_blocks">Blocks</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <span class="text-warning"></span>
+                            <div class="form-group">
+                                <button type="button" class="btn btn-success btn-sm trn" data-trn-key="buy" style="width: 100%;">Buy Order</button>
+                            </div>
+                        </form>
                     </div>
 
-                    <div class="balance-warning">
-                        <p>
-                            Make sure <a href="javascript://">ZeroGold</a> is the token you actually want to trade.
-                            Multiple tokens can share the same name.
-                        </p>
+                    <div role="tabpanel" class="tab-pane" id="sell">
+                        <form>
+                            <div class="form-group">
+                                <label for="sellAmount" data-trn-key="amount_to_sell">Amount to sell</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control form-control-sm" id="sellAmount">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">ZeroGold</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="sellPrice" data-trn-key="price">Price</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control form-control-sm trn" id="sellPrice" data-trn-key="">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">ETH</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="sellTotal" data-trn-key="total">Total</label>
+                                <input type="text" class="form-control form-control-sm" id="sellTotal" value="" readonly="">
+                            </div>
+                            <div class="form-group">
+                                <label for="sellExpires" data-toggle="tooltip" data-placement="bottom" title="" data-trn-key-title="expires_explanation" data-trn-key="expires" data-original-title="The number of Ethereum blocks until the order automatically expires. (14 seconds per block.)">Expires</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control form-control-sm trn" id="sellExpires" value="10000" data-trn-key="">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text trn" data-trn-key="number_of_blocks">Blocks</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <span class="text-warning"></span>
+                            <div class="form-group">
+                                <button type="button" class="btn btn-danger btn-sm trn" data-trn-key="sell" style="width: 100%;">Sell Order</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
 
-<!-- REFACTOR BELOW -->
-
-        <div class="component">
-        <div class="component-header trn" data-trn-key="buy_sell">Buy/Sell</div>
-        <div class="component-tabs nav-header">
-          <ul class="nav" role="tablist">
-            <li role="presentation" class="nav-item">
-              <a href="https://etherdelta.com/#buy" aria-controls="buy" role="tab" data-toggle="tab" class="active nav-link trn" data-trn-key="buy" data-original-title="" title="">Buy Order</a>
-            </li>
-            <li role="presentation" claxss="nav-item">
-              <a href="https://etherdelta.com/#sell" aria-controls="sell" role="tab" data-toggle="tab" class="nav-link trn" data-trn-key="sell" data-original-title="" title="">Sell Order</a>
-            </li>
-          </ul>
-        </div>
-        <div class="tab-content">
-          <div role="tabpanel" class="tab-pane active" id="buy"><form><div class="form-group"><label for="buyAmount" data-trn-key="amount_to_buy">Amount to buy</label><div class="input-group"><input type="text" class="form-control form-control-sm" id="buyAmount"><div class="input-group-append"><span class="input-group-text">ZeroGold</span></div></div></div><div class="form-group"><label for="buyPrice" data-trn-key="price">Price</label><div class="input-group"><input type="text" class="form-control form-control-sm trn" id="buyPrice" data-trn-key=""><div class="input-group-append"><span class="input-group-text">ETH</span></div></div></div><div class="form-group"><label for="buyTotal" data-trn-key="total">Total</label><input type="text" id="buyTotal" class="form-control form-control-sm" value="" readonly=""></div><div class="form-group"><label for="buyExpires" data-toggle="tooltip" data-placement="bottom" title="" data-trn-key-title="expires_explanation" data-trn-key="expires" data-original-title="The number of Ethereum blocks until the order automatically expires. (14 seconds per block.)">Expires</label><div class="input-group"><input type="text" class="form-control form-control-sm" id="buyExpires" value="10000"><div class="input-group-append"><span class="input-group-text trn" data-trn-key="number_of_blocks">Blocks</span></div></div></div><span class="text-warning"></span><div class="form-group"><button type="button" class="btn btn-success btn-sm trn" data-trn-key="buy" style="width: 100%;">Buy Order</button></div></form></div>
-          <div role="tabpanel" class="tab-pane" id="sell"><form><div class="form-group"><label for="sellAmount" data-trn-key="amount_to_sell">Amount to sell</label><div class="input-group"><input type="text" class="form-control form-control-sm" id="sellAmount"><div class="input-group-append"><span class="input-group-text">ZeroGold</span></div></div></div><div class="form-group"><label for="sellPrice" data-trn-key="price">Price</label><div class="input-group"><input type="text" class="form-control form-control-sm trn" id="sellPrice" data-trn-key=""><div class="input-group-append"><span class="input-group-text">ETH</span></div></div></div><div class="form-group"><label for="sellTotal" data-trn-key="total">Total</label><input type="text" class="form-control form-control-sm" id="sellTotal" value="" readonly=""></div><div class="form-group"><label for="sellExpires" data-toggle="tooltip" data-placement="bottom" title="" data-trn-key-title="expires_explanation" data-trn-key="expires" data-original-title="The number of Ethereum blocks until the order automatically expires. (14 seconds per block.)">Expires</label><div class="input-group"><input type="text" class="form-control form-control-sm trn" id="sellExpires" value="10000" data-trn-key=""><div class="input-group-append"><span class="input-group-text trn" data-trn-key="number_of_blocks">Blocks</span></div></div></div><span class="text-warning"></span><div class="form-group"><button type="button" class="btn btn-danger btn-sm trn" data-trn-key="sell" style="width: 100%;">Sell Order</button></div></form></div>
-        </div>
-      </div>
-    </div>
-    <div class="vertical">
-      <div class="component component-full">
-        <div class="component-header trn" data-trn-key="order_book">Order Book</div>
-        <div id="orders"><div id="orderBookScroll"><table class="table table-condensed table-borderless table-order-book"><tbody><tr id="orderBookMid" class="mid-header"><th>ZeroGold</th><th><span data-toggle="tooltip" data-placement="top" title="" data-original-title="1 ZeroGold = ? ETH">ZeroGold/ETH</span></th><th>ETH</th></tr><tr><td colspan="3"><span data-trn-key="no_orders">There are no orders here.</span></td></tr></tbody></table></div></div>
-      </div>
-    </div>
-    <div class="vertical-split">
-      <div class="component">
-        <div class="component-header trn" data-trn-key="price_chart">Price Chart</div>
-        <div id="chartPrice"><div class="chart-quote"><div></div></div><div class="component-tabs nav-header"><ul class="nav" role="tablist"><li role="presentation" class="nav-item"><a aria-controls="1h" role="tab" data-toggle="tab" class="nav-link trn" data-trn-key="1H" data-original-title="" title="">1H</a></li><li role="presentation" class="nav-item"><a aria-controls="2h" role="tab" data-toggle="tab" class="nav-link trn" data-trn-key="2H" data-original-title="" title="">2H</a></li><li role="presentation" class="nav-item"><a aria-controls="6h" role="tab" data-toggle="tab" class="nav-link trn" data-trn-key="6H" data-original-title="" title="">6H</a></li><li role="presentation" class="nav-item"><a aria-controls="24h" role="tab" data-toggle="tab" class="active nav-link trn" data-trn-key="24H" data-original-title="" title="">24H</a></li></ul></div><div><div class="chart-container"><div class="price-chart"><div></div></div></div></div></div>
-      </div>
-      <div class="component">
-        <div class="component-header trn" data-trn-key="my_transactions">Your Transactions</div>
-        <div class="component-tabs nav-header">
-          <ul class="nav" role="tablist">
-            <li role="presentation" class="nav-item">
-              <a href="https://etherdelta.com/#myTrades" aria-controls="myTrades" role="tab" data-toggle="tab" class="active nav-link trn" data-trn-key="trades" data-original-title="" title="">Trades</a>
-            </li>
-            <li role="presentation" class="nav-item">
-              <a href="https://etherdelta.com/#myOrders" aria-controls="myOrders" role="tab" data-toggle="tab" class="nav-link trn" data-trn-key="orders" data-original-title="" title="">Orders</a>
-            </li>
-            <li role="presentation" class="nav-item">
-              <a href="https://etherdelta.com/#myFunds" aria-controls="myFunds" role="tab" data-toggle="tab" class="nav-link trn" data-trn-key="funds" data-original-title="" title="">Funds</a>
-            </li>
-          </ul>
-        </div>
-        <div class="tab-content">
-          <div role="tabpanel" class="tab-pane active" id="myTrades"><div><table class="table table-condensed table-borderless table-my-trades"><thead><tr class="table-header"><th data-trn-key="transaction">Transaction</th><th data-trn-key="type">Type</th><th>ZeroGold</th><th>ETH</th><th>ZeroGold/ETH</th></tr></thead><tbody><tr><td colspan="5" class="table-note trn" data-trn-key="only_7_days">Note: {{ appTitle }} will only show recent transactions.</td></tr></tbody></table></div></div>
-          <div role="tabpanel" class="tab-pane" id="myOrders"><div><table class="table table-condensed table-borderless table-orders"><thead><tr class="table-header"><th>ZeroGold/ETH</th><th data-trn-key="available_volume">Available volume</th><th data-trn-key="expires_in">Expires in</th><th data-trn-key="cancel">Cancel</th></tr></thead><tbody><tr><td colspan="4" class="table-note trn" data-trn-key="no_orders">There are no orders here.</td></tr></tbody></table></div></div>
-          <div role="tabpanel" class="tab-pane" id="myFunds"><div><table class="table table-condensed table-borderless table-funds"><thead><tr class="table-header"><th data-trn-key="transaction">Transaction</th><th data-trn-key="type">Type</th><th>ZeroGold</th><th>ETH</th></tr></thead><tbody><tr><td colspan="5" class="table-note trn" data-trn-key="only_7_days">Note: {{ appTitle }} will only show recent transactions.</td></tr></tbody></table></div></div>
-        </div>
-      </div>
-    </div>
-    <div class="vertical-split">
-      <div class="component">
-        <div class="component-header trn" data-trn-key="trades_and_volume">Trades &amp; Volume</div>
-        <div class="component-tabs nav-header">
-          <ul class="nav" role="tablist">
-            <li role="presentation" class="nav-item">
-              <a href="https://etherdelta.com/#trades" aria-controls="buy" role="tab" data-toggle="tab" class="active nav-link trn" data-trn-key="trades" data-original-title="" title="">Trades</a>
-            </li>
-            <li role="presentation" class="nav-item">
-              <a href="https://etherdelta.com/#volume" aria-controls="sell" role="tab" data-toggle="tab" class="nav-link trn" data-trn-key="volume" data-original-title="" title="">Volume</a>
-            </li>
-          </ul>
-        </div>
-        <div class="tab-content">
-          <div role="tabpanel" class="tab-pane active" id="trades"><div><table class="table table-condensed table-borderless table-trades"><thead><tr class="table-header"><th>Time</th><th>ZeroGold</th><th>ZeroGold/ETH</th><th></th></tr></thead><tbody><tr><td>12:44:52 AM 1/21</td><td><span cdata-toggle="tooltip" data-placement="bottom" title="10.000000000">10.000</span></td><td><span class="buy">0.000205414</span></td><td><a href="https://etherscan.io/tx/0x70a322dcad5da800e439c5c36c3e4aa3a218e186dfe48fd72c045aa0652fa198" target="_blank"><i class="fa fa-external-link-square-alt" aria-hidden="true"></i></a></td></tr><tr><td>12:42:00 AM 1/21</td><td><span cdata-toggle="tooltip" data-placement="bottom" title="9.999999990">10.000</span></td><td><span class="buy">0.000190172</span></td><td><a href="https://etherscan.io/tx/0x7656494e4ee100422688f364b45ca58a3e5d6213ef982828ddd2c2b3e990c515" target="_blank"><i class="fa fa-external-link-square-alt" aria-hidden="true"></i></a></td></tr><tr><td>7:09:16 PM 1/19</td><td><span cdata-toggle="tooltip" data-placement="bottom" title="10.000000000">10.000</span></td><td><span class="buy">0.000190309</span></td><td><a href="https://etherscan.io/tx/0x8c08711f1b46b3f41c475112ed7572fa2c52dc27ac5d09bab1e2160b51f074ac" target="_blank"><i class="fa fa-external-link-square-alt" aria-hidden="true"></i></a></td></tr><tr><td>7:00:44 PM 1/19</td><td><span cdata-toggle="tooltip" data-placement="bottom" title="10.000000000">10.000</span></td><td><span class="buy">0.000189355</span></td><td><a href="https://etherscan.io/tx/0x3aa3383af5fff454855f02e11ccbaa6285cb25f3cd2d6aecd7842b00358a4115" target="_blank"><i class="fa fa-external-link-square-alt" aria-hidden="true"></i></a></td></tr><tr><td>6:13:12 PM 1/18</td><td><span cdata-toggle="tooltip" data-placement="bottom" title="25.000000000">25.000</span></td><td><span class="buy">0.000162390</span></td><td><a href="https://etherscan.io/tx/0x7c5eaf0a07000fba9efc76883750a500883ed42753cae0d38ec0d23923b0ca69" target="_blank"><i class="fa fa-external-link-square-alt" aria-hidden="true"></i></a></td></tr><tr><td colspan="4" class="table-note trn" data-trn-key="only_7_days">Note: {{ appTitle }} will only show recent transactions.</td></tr></tbody></table></div></div>
-          <div role="tabpanel" class="tab-pane" id="volume"><div>
-                        <table class="table table-condensed table-borderless table-volume">
-                            <thead>
+        <div class="vertical">
+            <div class="component component-full">
+                <div class="component-header trn" data-trn-key="order_book">Order Book</div>
+                <div id="orders">
+                    <div id="orderBookScroll">
+                        <table class="table table-condensed table-borderless">
+                        <!-- <table class="table table-condensed table-borderless table-order-book"> -->
                                 <tr>
-                                    <th data-trn-key="token">Token</th>
-                                    <th data-trn-key="daily">Daily</th>
-                                    <th data-trn-key="last">last</th>
+                                    <td>ZeroGold</td>
+                                    <td>ZeroGold/ETH</td>
+                                    <td>ETH</td>
                                 </tr>
-                            </thead>
-                            <tbody>
                                 <tr>
-                                    <td>
-                                        <a href="https://etherdelta.com/#RHOC-ETH">RHOC</a>
+                                    <td colspan="3">
+                                        There are no orders here.
                                     </td>
-                                    <td>200000</td>
-                                    <td class="text-danger">0.000151421</td>
                                 </tr>
-                                <tr>
-                                    <td>
-                                        <a href="https://etherdelta.com/#PLR-ETH">PLR</a>
-                                    </td>
-                                    <td>119621</td>
-                                    <td class="text-danger">0.000162000</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a href="https://etherdelta.com/#VERI-ETH">VERI</a>
-                                    </td>
-                                    <td>112</td>
-                                    <td class="text-success">0.127800000</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a href="https://etherdelta.com/#%C2%A2-ETH">¢</a>
-                                    </td>
-                                    <td>0</td>
-                                    <td class="text-success"></td>
-                                </tr>
-                            </tbody>
                         </table>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="component">
-            <div class="component-header">
-                <span data-trn-key="updates">Updates</span>
-            </div>
+        <div class="vertical-split">
+            <div class="component">
+                <div class="component-header trn" data-trn-key="price_chart">Price Chart</div>
+                <div id="chartPrice">
+                    <div class="chart-quote">
+                        <div></div>
+                    </div>
 
-            <div class="component-tabs nav-header">
-                <ul class="nav" role="tablist">
-                    <li role="presentation" class="nav-item">
-                        <a href="https://etherdelta.com/#important" aria-controls="info" role="tab" data-toggle="tab" class="active nav-link trn" data-trn-key="important" data-original-title="" title="">Important</a>
-                    </li>
-                    <li role="presentation" class="nav-item">
-                        <a href="https://etherdelta.com/#twitter" aria-controls="twitter" role="tab" data-toggle="tab" class="nav-link" data-original-title="" title="">Twitter</a>
-                    </li>
-                </ul>
-            </div>
+                    <div class="component-tabs nav-header">
+                        <ul class="nav" role="tablist">
+                            <li role="presentation" class="nav-item">
+                                <a aria-controls="1h" role="tab" data-toggle="tab" class="nav-link trn" data-trn-key="1H" data-original-title="" title="">1H</a>
+                            </li>
+                            <li role="presentation" class="nav-item">
+                                <a aria-controls="2h" role="tab" data-toggle="tab" class="nav-link trn" data-trn-key="2H" data-original-title="" title="">2H</a>
+                            </li>
+                            <li role="presentation" class="nav-item">
+                                <a aria-controls="6h" role="tab" data-toggle="tab" class="nav-link trn" data-trn-key="6H" data-original-title="" title="">6H</a>
+                            </li>
+                            <li role="presentation" class="nav-item">
+                                <a aria-controls="24h" role="tab" data-toggle="tab" class="active nav-link trn" data-trn-key="24H" data-original-title="" title="">24H</a>
+                            </li>
+                        </ul>
+                    </div>
 
-            <div class="tab-content">
-                <div role="tabpanel" class="tab-pane active" id="important">
                     <div>
-                        <p class="text-danger">Notices</p>
-
-                        <p>
-                            The only official URLs for ZeroDelta are:
-                            <br />&nbsp;&nbsp;&nbsp;&nbsp; <strong class="text-primary">https://0net.io/zerodelta.bit</strong>
-                            <br />&nbsp;&nbsp;&nbsp;&nbsp; <strong class="text-primary">https://0net.xyz/zerodelta.bit</strong>
-                            <br />Bookmark it once and use the bookmark.
-                        </p>
-
-                        <p>
-                            Do not send your tokens directly to the smart contract, or they will be lost and unrecoverable.
-                            Use the Deposit form (upper-left) to send the proper deposit transaction.
-                        </p>
-
-                        <p>
-                            The only official representatives in the chat room are d14na, ??, and ??.
-                        </p>
-
-                        <p class="text-danger">Disclaimer</p>
-
-                        <p>
-                            {{ appTitle }} is a decentralized trading platform that lets you trade Ether and Ethereum-based tokens directly with other users.
-                            You are responsible for your own account, funds, and private keys. You are responsible for your own
-                            trading decisions, and the details and mechanics of the tokens you trade. {{ appTitle }} is not responsible
-                            for your decisions, actions, or losses that result from using {{ appTitle }}. {{ appTitle }} makes no guarantee
-                            about the tokens that you trade using {{ appTitle }}. {{ appTitle }} does not hold your funds and does not
-                            offer refunds. While the information contained on {{ appTitle }} is periodically updated, no guarantee
-                            is given that the information provided on {{ appTitle }} is correct, complete, or up-to-date. By using
-                            {{ appTitle }}, you acknowledge this and agree to these terms.
-                        </p>
+                        <div class="chart-container">
+                            <div class="price-chart">
+                                <div></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div> <!-- tab-content -->
-        </div> <!-- component -->
-    </div> <!-- vertical-split -->
-</div> <!-- trading-cont -->
+            </div>
 
-</div> <!-- app -->
+            <div class="component">
+                <div class="component-header trn" data-trn-key="my_transactions">Your Transactions</div>
+                <div class="component-tabs nav-header">
+                    <ul class="nav" role="tablist">
+                        <li role="presentation" class="nav-item">
+                            <a href="https://etherdelta.com/#myTrades" aria-controls="myTrades" role="tab" data-toggle="tab" class="active nav-link trn" data-trn-key="trades" data-original-title="" title="">Trades</a>
+                        </li>
+                        <li role="presentation" class="nav-item">
+                            <a href="https://etherdelta.com/#myOrders" aria-controls="myOrders" role="tab" data-toggle="tab" class="nav-link trn" data-trn-key="orders" data-original-title="" title="">Orders</a>
+                        </li>
+                        <li role="presentation" class="nav-item">
+                            <a href="https://etherdelta.com/#myFunds" aria-controls="myFunds" role="tab" data-toggle="tab" class="nav-link trn" data-trn-key="funds" data-original-title="" title="">Funds</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="myTrades"><div><table class="table table-condensed table-borderless table-my-trades"><thead><tr class="table-header"><th data-trn-key="transaction">Transaction</th><th data-trn-key="type">Type</th><th>ZeroGold</th><th>ETH</th><th>ZeroGold/ETH</th></tr></thead><tbody><tr><td colspan="5" class="table-note trn" data-trn-key="only_7_days">Note: {{ appTitle }} will only show recent transactions.</td></tr></tbody></table></div></div>
+                    <div role="tabpanel" class="tab-pane" id="myOrders"><div><table class="table table-condensed table-borderless table-orders"><thead><tr class="table-header"><th>ZeroGold/ETH</th><th data-trn-key="available_volume">Available volume</th><th data-trn-key="expires_in">Expires in</th><th data-trn-key="cancel">Cancel</th></tr></thead><tbody><tr><td colspan="4" class="table-note trn" data-trn-key="no_orders">There are no orders here.</td></tr></tbody></table></div></div>
+                    <div role="tabpanel" class="tab-pane" id="myFunds"><div><table class="table table-condensed table-borderless table-funds"><thead><tr class="table-header"><th data-trn-key="transaction">Transaction</th><th data-trn-key="type">Type</th><th>ZeroGold</th><th>ETH</th></tr></thead><tbody><tr><td colspan="5" class="table-note trn" data-trn-key="only_7_days">Note: {{ appTitle }} will only show recent transactions.</td></tr></tbody></table></div></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="vertical-split">
+            <div class="component">
+                <div class="component-header trn" data-trn-key="trades_and_volume">Trades &amp; Volume</div>
+                <div class="component-tabs nav-header">
+                    <ul class="nav" role="tablist">
+                        <li role="presentation" class="nav-item">
+                            <a href="https://etherdelta.com/#trades" aria-controls="buy" role="tab" data-toggle="tab" class="active nav-link trn" data-trn-key="trades" data-original-title="" title="">Trades</a>
+                        </li>
+                        <li role="presentation" class="nav-item">
+                            <a href="https://etherdelta.com/#volume" aria-controls="sell" role="tab" data-toggle="tab" class="nav-link trn" data-trn-key="volume" data-original-title="" title="">Volume</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="trades">
+                        <div>
+                            <table class="table table-condensed table-borderless table-trades">
+                                <thead>
+                                    <tr class="table-header">
+                                        <th>Time</th>
+                                        <th>ZeroGold</th>
+                                        <th>ZeroGold/ETH</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>12:44:52 AM 1/21</td>
+                                        <td>
+                                            <span cdata-toggle="tooltip" data-placement="bottom" title="10.000000000">10.000</span>
+                                        </td>
+                                        <td>
+                                            <span class="buy">0.000205414</span>
+                                        </td>
+                                        <td>
+                                            <a href="https://etherscan.io/tx/0x70a322dcad5da800e439c5c36c3e4aa3a218e186dfe48fd72c045aa0652fa198" target="_blank">
+                                                <i class="fa fa-external-link-square-alt" aria-hidden="true"></i></a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            12:42:00 AM 1/21
+                                        </td>
+                                        <td>
+                                            <span cdata-toggle="tooltip" data-placement="bottom" title="9.999999990">10.000</span>
+                                        </td>
+                                        <td>
+                                            <span class="buy">0.000190172</span>
+                                        </td>
+                                        <td>
+                                            <a href="https://etherscan.io/tx/0x7656494e4ee100422688f364b45ca58a3e5d6213ef982828ddd2c2b3e990c515" target="_blank">
+                                                <i class="fa fa-external-link-square-alt" aria-hidden="true"></i></a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            7:09:16 PM 1/19
+                                        </td>
+                                        <td>
+                                            <span cdata-toggle="tooltip" data-placement="bottom" title="10.000000000">10.000</span>
+                                        </td>
+                                        <td>
+                                            <span class="buy">0.000190309</span>
+                                        </td>
+                                        <td>
+                                            <a href="https://etherscan.io/tx/0x8c08711f1b46b3f41c475112ed7572fa2c52dc27ac5d09bab1e2160b51f074ac" target="_blank">
+                                                <i class="fa fa-external-link-square-alt" aria-hidden="true"></i></a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            7:00:44 PM 1/19
+                                        </td>
+                                        <td>
+                                            <span cdata-toggle="tooltip" data-placement="bottom" title="10.000000000">10.000</span>
+                                        </td>
+                                        <td>
+                                            <span class="buy">0.000189355</span>
+                                        </td>
+                                        <td>
+                                            <a href="https://etherscan.io/tx/0x3aa3383af5fff454855f02e11ccbaa6285cb25f3cd2d6aecd7842b00358a4115" target="_blank">
+                                                <i class="fa fa-external-link-square-alt" aria-hidden="true"></i></a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            6:13:12 PM 1/18
+                                        </td>
+                                        <td>
+                                            <span cdata-toggle="tooltip" data-placement="bottom" title="25.000000000">25.000</span>
+                                        </td>
+                                        <td>
+                                            <span class="buy">0.000162390</span>
+                                        </td>
+                                        <td>
+                                            <a href="https://etherscan.io/tx/0x7c5eaf0a07000fba9efc76883750a500883ed42753cae0d38ec0d23923b0ca69" target="_blank">
+                                                <i class="fa fa-external-link-square-alt" aria-hidden="true"></i></a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4" class="table-note trn" data-trn-key="only_7_days">
+                                            Note: {{ appTitle }} will only show recent transactions.
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div> <!-- tabpanel -->
+
+                    <div role="tabpanel" class="tab-pane" id="volume">
+                        <div>
+                            <table class="table table-condensed table-borderless table-volume">
+                                <thead>
+                                    <tr>
+                                        <th data-trn-key="token">Token</th>
+                                        <th data-trn-key="daily">Daily</th>
+                                        <th data-trn-key="last">last</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <a href="https://etherdelta.com/#RHOC-ETH">RHOC</a>
+                                        </td>
+                                        <td>200000</td>
+                                        <td class="text-danger">0.000151421</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href="https://etherdelta.com/#PLR-ETH">PLR</a>
+                                        </td>
+                                        <td>119621</td>
+                                        <td class="text-danger">0.000162000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href="https://etherdelta.com/#VERI-ETH">VERI</a>
+                                        </td>
+                                        <td>112</td>
+                                        <td class="text-success">0.127800000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href="https://etherdelta.com/#%C2%A2-ETH">¢</a>
+                                        </td>
+                                        <td>0</td>
+                                        <td class="text-success"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div> <!-- tabpanel -->
+                </div> <!-- tab-content -->
+            </div> <!-- component -->
+
+            <div class="component">
+                <div class="component-header">
+                    <span data-trn-key="updates">Updates</span>
+                </div>
+
+                <div class="component-tabs nav-header">
+                    <ul class="nav" role="tablist">
+                        <li role="presentation" class="nav-item">
+                            <a href="https://etherdelta.com/#important" aria-controls="info" role="tab" data-toggle="tab" class="active nav-link trn" data-trn-key="important" data-original-title="" title="">Important</a>
+                        </li>
+                        <li role="presentation" class="nav-item">
+                            <a href="https://etherdelta.com/#twitter" aria-controls="twitter" role="tab" data-toggle="tab" class="nav-link" data-original-title="" title="">Twitter</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="important">
+                        <div>
+                            <p class="text-danger">Notices</p>
+
+                            <p>
+                                The only official URLs for ZeroDelta are:
+                                <br />&nbsp;&nbsp;&nbsp;&nbsp; <strong class="text-primary">https://0net.io/zerodelta.bit</strong>
+                                <br />&nbsp;&nbsp;&nbsp;&nbsp; <strong class="text-primary">https://0net.xyz/zerodelta.bit</strong>
+                                <br />Bookmark it once and use the bookmark.
+                            </p>
+
+                            <p>
+                                Do not send your tokens directly to the smart contract, or they will be lost and unrecoverable.
+                                Use the Deposit form (upper-left) to send the proper deposit transaction.
+                            </p>
+
+                            <p>
+                                The only official representatives in the chat room are d14na, ??, and ??.
+                            </p>
+
+                            <p class="text-danger">Disclaimer</p>
+
+                            <p>
+                                {{ appTitle }} is a decentralized trading platform that lets you trade Ether and Ethereum-based tokens directly with other users.
+                                You are responsible for your own account, funds, and private keys. You are responsible for your own
+                                trading decisions, and the details and mechanics of the tokens you trade. {{ appTitle }} is not responsible
+                                for your decisions, actions, or losses that result from using {{ appTitle }}. {{ appTitle }} makes no guarantee
+                                about the tokens that you trade using {{ appTitle }}. {{ appTitle }} does not hold your funds and does not
+                                offer refunds. While the information contained on {{ appTitle }} is periodically updated, no guarantee
+                                is given that the information provided on {{ appTitle }} is correct, complete, or up-to-date. By using
+                                {{ appTitle }}, you acknowledge this and agree to these terms.
+                            </p>
+                        </div>
+                    </div>
+                </div> <!-- tab-content -->
+            </div> <!-- component -->
+        </div> <!-- vertical-split -->
+    </div> <!-- trading-cont -->
+</div> <!-- VueJs app container -->
 
 <div id="buyTrade"><div></div></div>
 <div id="sellTrade"><div></div></div>
