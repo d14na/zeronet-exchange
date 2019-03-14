@@ -106,8 +106,141 @@ const vueAppManager = {
                 this.profileAddress = defaultAddress
             }
         },
+        async signTrade () {
+            console.log('Signing ZeroCache transfer for ZeroDelta trade..')
+
+            const web3 = new Web3(ethereum)
+
+            let anameZeroCache = '0x565d0859a620aE99052Cc44dDe74b199F13A3433'
+            let ttl = 5210054
+            let expiration = 1552543377
+
+            const contract = { t: 'address', v: anameZeroCache }
+            const token = { t: 'address', v: '0xc778417E063141139Fce010982780140Aa0cD5Ab' }
+            const from = { t: 'address', v: ethereum.selectedAddress }
+            const to = { t: 'address', v: '0xE632A8cBfcd7bF9d87dac9B59A039007080658CA' }
+            const tokens = { t: 'uint256', v: '7000000000000000' } // 0.007 WETH
+            // const staekholder = { t: 'bytes', v: '0x1936712F2Ff24469b41F1E665AB6483e6CaE2035' }
+            const staekholder = { t: 'bytes', v: '0x0000000000000000000000000000000000000000' }
+            const staek = { t: 'uint256', v: '0' }
+            const expires = { t: 'uint256', v: ttl }
+            const nonce = { t: 'uint256', v: expiration } // seconds
+            // const nonce = { t: 'uint256', v: moment().unix() } // seconds
+
+            /* Sign the parameters to generate a hash signature. */
+            const sigHash = web3.utils.soliditySha3(
+                contract, // ZeroCache's contract address
+                token, // token's contract address
+                from, // sender's address
+                to, // receiver's address
+                tokens, // quantity of tokens
+                staekholder, // staekholder (NOTE: bytes is the same as address, but w/out checksum)
+                staek, // staek amount
+                expires, // expiration time
+                nonce // nonce (unique integer)
+            )
+
+            console.log('SIGNATURE HASH', sigHash)
+
+            /* Sign signature hash. */
+            const signature = await web3.eth.personal.sign(
+                sigHash, ethereum.selectedAddress)
+
+            console.log('SIGNATURE', signature)
+        },
         async connectMetamask () {
             console.log('Connecting Metamask..', ethereum)
+
+            const web3 = new Web3(ethereum)
+
+            let anameZeroCache = '0x565d0859a620aE99052Cc44dDe74b199F13A3433'
+            let ttl = 5200000
+
+            const contract = { t: 'address', v: anameZeroCache }
+            const token = { t: 'address', v: '0x079F89645eD85b85a475BF2bdc82c82f327f2932' }
+            const from = { t: 'address', v: ethereum.selectedAddress }
+            const to = { t: 'address', v: '0xb07d84f2c5d8be1f4a440173bc536e0b2ee3b05e' }
+            const tokens = { t: 'uint256', v: '13370000000' }
+            // const staekholder = { t: 'bytes', v: '0x1936712F2Ff24469b41F1E665AB6483e6CaE2035' }
+            const staekholder = { t: 'bytes', v: '0x0000000000000000000000000000000000000000' }
+            const staek = { t: 'uint256', v: '0' }
+            const expires = { t: 'uint256', v: ttl }
+            const nonce = { t: 'uint256', v: 0 } // seconds
+            // const nonce = { t: 'uint256', v: moment().unix() } // seconds
+
+            /* Sign the parameters to generate a hash signature. */
+            const sigHash = web3.utils.soliditySha3(
+                contract, // ZeroCache's contract address
+                token, // token's contract address
+                from, // sender's address
+                to, // receiver's address
+                tokens, // quantity of tokens
+                staekholder, // staekholder (NOTE: bytes is the same as address, but w/out checksum)
+                staek, // staek amount
+                expires, // expiration time
+                nonce // nonce (unique integer)
+            )
+
+            console.log('SIGNATURE HASH', sigHash)
+
+            /* Sign signature hash. */
+            const signature = await web3.eth.personal.sign(
+                sigHash, ethereum.selectedAddress)
+
+            console.log('SIGNATURE', signature)
+
+            /* Build relay package. */
+            const relayPkg = {
+                token: token.v,
+                from: from.v,
+                to: to.v,
+                tokens: tokens.v,
+                staekholder: staekholder.v,
+                staek: staek.v,
+                expires: expires.v,
+                nonce: nonce.v,
+                signature
+            }
+
+            console.log('Relay Package', relayPkg)
+
+            /* Set method. */
+            const method = 'POST'
+
+            /* Set headers. */
+            const headers = {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+
+            /* Set body. */
+            const body = JSON.stringify(relayPkg)
+
+            /* Set options. */
+            const options = { method, headers, body }
+
+            /* Initialize (Cache) endpoint. */
+            let endpoint = null
+
+            /* Initialize (Cache) endpoint. */
+            // FIXME We need to detect the network and connect appropriately.
+            if (false) { // MAINNET
+                endpoint = 'http://localhost:3000/v1'
+                // endpoint = 'https://cache.0net.io/v1'
+            } else { // ROPSTEN
+                endpoint = 'http://localhost:4000/v1'
+                // endpoint = 'https://cache-ropsten.0net.io/v1'
+            }
+
+            /* Make RPC. */
+            const rawResponse = await fetch(endpoint + '/transfer', options)
+
+            /* Retrieve response. */
+            const content = await rawResponse.json()
+
+            console.log(content)
+
+            return
 
             const eth = await ethereum.enable()
                 .catch(_error => {
@@ -124,7 +257,7 @@ const vueAppManager = {
             console.log('Address', ethereum.selectedAddress)
             console.log('Network', ethereum.networkVersion)
 
-            const web3 = new Web3(ethereum)
+            // const web3 = new Web3(ethereum)
 
             console.log('WEB ETH', web3.eth)
 
