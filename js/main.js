@@ -45,27 +45,41 @@ const vueAppManager = {
         zitePeers: 0,
         ziteSize: 0,
 
+        /* Blockchain Summary */
+        anameZeroCache: '0x0',
+        anameZeroDelta: '0x0',
+
         /* Exchange summary. */
         orders: 'There are no orders here.'
     }),
     mounted: function () {
         /* Initialize application. */
         this._init()
-
-        /* Initialize order book. */
-        this._initOrderBook()
     },
     computed: {
         // TODO
     },
     methods: {
-        _init: async function () {
+        _init () {
             /* Initialize new Zer0net app manager. */
             // NOTE Globally accessible (e.g. Zero.cmd(...))
             window.Zero = new ZeroApp()
 
             console.info('App.() & Zero.() have loaded successfully!')
 
+            /* Initialize Ethereum provider. */
+            this._initEthereum()
+
+            /* Initialize order book. */
+            // this._initOrderBook()
+
+            /* Initialie ZeroCache contract. */
+            this._initZeroCache()
+
+            /* Initialie ZeroDelta contract. */
+            this._initZeroDelta()
+        },
+        async _initEthereum () {
             if (window.ethereum) {
                 window.web3 = new Web3(ethereum)
 
@@ -83,27 +97,22 @@ const vueAppManager = {
                 console.log('window.currentProvider')
                 // Acccounts always exposed
             } else { // Non-dapp browsers...
-                console.log('Non-Ethereum browser detected. You should consider trying MetaMask!')
+                alert('Non-Ethereum browser detected.\nYou should consider trying MetaMask!')
             }
 
-            /* Initialize ethereum. */
-            // const eth = window.ethereum
+            /* Validate web3. */
+            if (window.web3) {
+                /* Retrieve accounts. */
+                const accounts = await window.web3.eth.getAccounts()
 
-            console.log('Web3', web3)
+                if (typeof accounts !== 'undefined') {
+                    /* Set address. */
+                    const defaultAddress = accounts[0]
 
-            // console.log('Selected address', eth.selectedAddress)
+                    console.log('Default address', defaultAddress)
 
-            // const address = eth.selectedAddress
-            /* Retrieve accounts. */
-            const accounts = await web3.eth.getAccounts()
-
-            if (typeof accounts !== 'undefined') {
-                /* Set address. */
-                const defaultAddress = accounts[0]
-
-                console.log('Default address', defaultAddress)
-
-                this.profileAddress = defaultAddress
+                    this.profileAddress = defaultAddress
+                }
             }
         },
         async signTrade () {
@@ -390,6 +399,62 @@ const vueAppManager = {
                 console.error('ERROR', _error)
             })
 
+        },
+        async _initZeroCache () {
+            console.log('Starting ZeroCache initialization..')
+
+            /* Set data id. */
+            // NOTE: keccak256(`aname.zerocache`)
+            const dataId = '0x75341c765d2ccac618fa566b11618076575bdb7620692a552e9ac9ff23a5540c'
+
+            /* Initialize endpoint. */
+            let endpoint = null
+
+            endpoint = `https://db-ropsten.0net.io/v1/getAddress/${dataId}`
+
+            /* Make API request. */
+            const response = await fetch(endpoint)
+                .catch(_error => {
+                    console.error('REQUEST ERROR:', _error)
+                })
+
+            /* Request aname. */
+            const aname = await response.json()
+
+            console.log('ZeroCache ANAME RESPONSE:', aname)
+
+            /* Validate aname. */
+            if (typeof aname !== 'undefined') {
+                this.anameZeroCache = aname
+            }
+        },
+        async _initZeroDelta () {
+            console.log('Starting ZeroDelta initialization..')
+
+            /* Set data id. */
+            // NOTE: keccak256(`aname.zerodelta`)
+            const dataId = '0xbd7239f4aaac15ef5b656f04994d54293ff22d4aac85bedfcb4b68e502db0497'
+
+            /* Initialize endpoint. */
+            let endpoint = null
+
+            endpoint = `https://db-ropsten.0net.io/v1/getAddress/${dataId}`
+
+            /* Make API request. */
+            const response = await fetch(endpoint)
+                .catch(_error => {
+                    console.error('REQUEST ERROR:', _error)
+                })
+
+            /* Request aname. */
+            const aname = await response.json()
+
+            console.log('ZeroDelta ANAME RESPONSE:', aname)
+
+            /* Validate aname. */
+            if (typeof aname !== 'undefined') {
+                this.anameZeroDelta = aname
+            }
         }
     }
 }
