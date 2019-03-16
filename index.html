@@ -9,14 +9,21 @@
 
     <link href="./favicon.ico" rel="icon">
     <link href="./css/main.css" rel="stylesheet">
+
+    <style>
+    .nowrap {
+        overflow: hidden;
+        white-space: nowrap;
+    }
+    </style>
 </head>
 
 <body class="dark">
 
 <div id="app"> <!-- VueJs app container -->
     <nav class="navbar navbar-light navbar-expand-lg">
-        <a class="navbar-brand" href="https://0net.xyz/zerodelta.bit">
-            Zero<span class="text-primary">Delta</span>
+        <a class="navbar-brand text-primary" href="https://0net.xyz/zerodelta.bit">
+            Zero<span class="text-info">Delta</span>
         </a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -70,8 +77,8 @@
                     <ul class="dropdown-menu dropdown-menu-right">
                         <li class="active dropdown-item"><a href="javascript://">{{profileAddress}}&nbsp;<span class="badge badge-dark">0.013 ETH</span>&nbsp;<span class="badge badge-success">MetaMask</span></a></li>
                         <li role="separator" class="dropdown-divider"></li>
-                        <li class="dropdown-item btn text-info"><i class="fa fa-fw fa-piggy-bank"></i> ₵a¢he IN <small><small class="text-danger">(ZeroCache Wallet)</small></small></li>
-                        <li class="dropdown-item btn text-info"><i class="fa fa-fw fa-money-check-alt"></i> ₵a¢he OUT <small><small class="text-danger">(ZeroCache Wallet)</small></small></li>
+                        <li class="dropdown-item btn text-info"><i class="fa fa-fw fa-piggy-bank"></i> Cache IN <small><small class="text-danger">(ZeroCache Wallet)</small></small></li>
+                        <li class="dropdown-item btn text-info"><i class="fa fa-fw fa-money-check-alt"></i> Cache OUT <small><small class="text-danger">(ZeroCache Wallet)</small></small></li>
                         <li class="dropdown-item btn text-info" @click="signTrade"><i class="fa fa-fw fa-plug"></i> Sign ZeroDelta <small><small class="text-danger">(ZeroCache DEX)</small></small></li>
                         <li class="dropdown-item btn text-info" @click="connectMetamask"><i class="fa fa-fw fa-plug"></i> Connect Metamask <small><small class="text-danger">(Web Wallet)</small></small></li>
                         <li class="dropdown-item btn text-info"><i class="fa fa-fw fa-plug"></i> Connect Ledger Nano S <small><small class="text-danger">(Hardware Wallet)</small></small></li>
@@ -117,39 +124,49 @@
     <div class="trading-cont">
         <div class="vertical-split">
             <div class="component">
-                <div class="component-header">Balance</div>
+                <div class="component-header">
+                    <span class="text-primary">Zero</span><span class="text-warning">₵a¢he</span> Balance
+                </div>
 
                 <div id="balance">
                     <div class="component-tabs nav-header">
                         <ul class="nav" role="tablist">
-                            <li role="presentation" class="nav-item">
-                                <a href="javascript://#deposit" aria-controls="deposit" role="tab" data-toggle="tab" class="active nav-link" data-original-title="" title="">Deposit</a>
+                            <li class="nav-item">
+                                <a role="tab" data-toggle="tab" href="#deposit" class="active nav-link" aria-controls="deposit" aria-selected="true">
+                                    Cache IN
+                                </a>
                             </li>
-                            <li role="presentation" class="nav-item">
-                                <a href="javascript://#withdraw" aria-controls="withdraw" role="tab" data-toggle="tab" class="nav-link" data-original-title="" title="">Withdraw</a>
+
+                            <li class="nav-item">
+                                <a role="tab" data-toggle="tab" href="#withdraw" class="nav-link" aria-controls="withdraw" aria-selected="false">
+                                    Cache OUT
+                                </a>
                             </li>
-                            <li role="presentation" class="nav-item">
-                                <a href="javascript://#transfer" aria-controls="transfer" role="tab" data-toggle="tab" class="nav-link" data-original-title="" title="">Transfer</a>
+
+                            <li class="nav-item">
+                                <a role="tab" data-toggle="tab" href="#transfer" class="nav-link" aria-controls="transfer" aria-selected="false">
+                                    Transfer
+                                </a>
                             </li>
                         </ul>
                     </div>
 
                     <div>
                         <div class="tab-content">
-                            <div role="tabpanel" class="tab-pane active" id="deposit">
+                            <div role="tabpanel" class="tab-pane fade show active" id="deposit">
                                 <table class="table table-borderless table-balances">
                                     <thead>
                                         <tr>
                                             <th>Token</th>
-                                            <th>₵a¢hed OUT</th>
-                                            <th>₵a¢hed IN</th>
+                                            <th>Cached OUT</th>
+                                            <th>Cached IN</th>
                                         </tr>
                                     </thead>
 
                                     <tbody>
                                         <tr>
                                             <td>
-                                                <a href="javascript://">ZeroGold</a>
+                                                <a href="javascript://" class="nowrap">ZeroGold (0GOLD)</a>
                                             </td>
                                             <td>
                                                 <span>0.000</span>
@@ -158,40 +175,43 @@
                                                 <span>0.000</span>
                                             </td>
                                         </tr>
+
                                         <tr class="balance-form">
                                             <td colspan="2">
                                                 <div class="form-group">
-                                                    <label for="ZeroGolddeposit">Deposit ZeroGold</label>
-                                                    <input type="text" class="form-control form-control-sm" id="ZeroGolddeposit" placeholder="Amount">
+                                                    <label for="cacheInBaseToken">Enter amount to Cache IN</label>
+                                                    <input type="text" class="form-control form-control-sm" id="cacheInBaseToken" placeholder="Amount">
                                                 </div>
                                             </td>
                                             <td>
                                                 <button type="button" class="btn btn-info btn-sm balance-inline" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Use this to deposit from your personal Ethereum wallet (&quot;Wallet&quot; column) to the {{ appTitle }} smart contract (&quot;{{ appTitle }}&quot; column).">
-                                                    Deposit
+                                                    Cache IN
                                                 </button>
                                             </td>
                                         </tr>
+
                                         <tr>
                                             <td>
-                                                <a href="javascript://">DAI</a>
+                                                <a href="javascript://" class="nowrap">Ethereum (ETH)</a>
                                             </td>
                                             <td>
-                                                <span data-toggle="tooltip" data-placement="bottom" title="" data-original-title="0.013068495718">0.013</span>
+                                                <span>0.013</span>
                                             </td>
                                             <td>
-                                                <span data-toggle="tooltip" data-placement="bottom" title="" data-original-title="0.000000000000">0.000</span>
+                                                <span>0.000</span>
                                             </td>
                                         </tr>
+
                                         <tr class="balance-form">
                                             <td colspan="2">
                                                 <div class="form-group">
-                                                    <label for="ETHdeposit">Deposit DAI</label>
-                                                    <input type="text" class="form-control form-control-sm" id="ETHdeposit" placeholder="Amount">
+                                                    <label for="cacheInTradeToken">Enter amount to Cache IN</label>
+                                                    <input type="text" class="form-control form-control-sm" id="cacheInTradeToken" placeholder="Amount">
                                                 </div>
                                             </td>
                                             <td>
-                                                <button type="button" class="btn btn-info btn-sm balance-inline" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Use this to deposit from your personal Ethereum wallet (&quot;Wallet&quot; column) to the {{ appTitle }} smart contract (&quot;{{ appTitle }}&quot; column).">
-                                                    Deposit
+                                                <button type="button" class="btn btn-info btn-sm balance-inline">
+                                                    Cache IN
                                                 </button>
                                             </td>
                                         </tr>
@@ -199,19 +219,20 @@
                                 </table>
                             </div>
 
-                            <div role="tabpanel" class="tab-pane" id="withdraw">
+                            <div role="tabpanel" class="tab-pane fade" id="withdraw">
                                 <table class="table table-borderless table-balances">
                                     <thead>
                                         <tr>
                                             <th>Token</th>
-                                            <th data-toggle="tooltip" data-placement="bottom" title="" data-original-title="This is the balance in your personal Ethereum wallet, which you have connected to {{ appTitle }} in the account dropdown (upper right).">₵a¢hed OUT</th>
-                                            <th data-toggle="tooltip" data-placement="bottom" title="" data-original-title="This is the balance you have deposited from your personal Ethereum wallet to the {{ appTitle }} smart contract.">₵a¢hed IN</th>
+                                            <th data-toggle="tooltip" data-placement="bottom" title="" data-original-title="This is the balance in your personal Ethereum wallet, which you have connected to {{ appTitle }} in the account dropdown (upper right).">Cached OUT</th>
+                                            <th data-toggle="tooltip" data-placement="bottom" title="" data-original-title="This is the balance you have deposited from your personal Ethereum wallet to the {{ appTitle }} smart contract.">Cached IN</th>
                                         </tr>
                                     </thead>
+
                                     <tbody>
                                         <tr>
                                             <td>
-                                                <a href="javascript://">ZeroGold</a>
+                                                <a href="javascript://" class="nowrap">ZeroGold</a>
                                             </td>
                                             <td>
                                                 <span data-toggle="tooltip" data-placement="bottom" title="" data-original-title="0.000000000000">0.000</span>
@@ -220,20 +241,22 @@
                                                 <span data-toggle="tooltip" data-placement="bottom" title="" data-original-title="0.000000000000">0.000</span>
                                             </td>
                                         </tr>
+
                                         <tr class="balance-form">
                                             <td colspan="2">
                                                 <div class="form-group">
-                                                    <label for="ZeroGoldwithdrawl">Withdraw ZeroGold</label>
+                                                    <label for="ZeroGoldwithdrawl">Cache OUT ZeroGold</label>
                                                     <input type="text" class="form-control form-control-sm" id="ZeroGoldwithdrawl" placeholder="Amount">
                                                 </div>
                                             </td>
                                             <td>
-                                                <button type="button" class="btn btn-info btn-sm balance-inline" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Use this to withdraw from the {{ appTitle }} smart contract (&quot;{{ appTitle }}&quot; column) to your personal Ethereum wallet (&quot;Wallet&quot; column).">Withdraw</button>
+                                                <button type="button" class="btn btn-info btn-sm balance-inline" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Use this to withdraw from the {{ appTitle }} smart contract (&quot;{{ appTitle }}&quot; column) to your personal Ethereum wallet (&quot;Wallet&quot; column).">Cache OUT</button>
                                             </td>
                                         </tr>
+
                                         <tr>
                                             <td>
-                                                <a href="javascript://">ETH</a>
+                                                <a href="javascript://" class="nowrap">Dai Stablecoin</a>
                                             </td>
                                             <td>
                                                 <span data-toggle="tooltip" data-placement="bottom" title="" data-original-title="0.013068495718">0.013</span>
@@ -242,16 +265,17 @@
                                                 <span data-toggle="tooltip" data-placement="bottom" title="" data-original-title="0.000000000000">0.000</span>
                                             </td>
                                         </tr>
+
                                         <tr class="balance-form">
                                             <td colspan="2">
                                                 <div class="form-group">
-                                                    <label for="ETHwithdrawl">Withdraw ETH</label>
+                                                    <label for="ETHwithdrawl">Cache OUT ETH</label>
                                                     <input type="text" class="form-control form-control-sm" id="ETHwithdrawl" placeholder="Amount">
                                                 </div>
                                             </td>
                                             <td>
                                                 <button type="button" class="btn btn-info btn-sm balance-inline" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Use this to withdraw from the {{ appTitle }} smart contract (&quot;{{ appTitle }}&quot; column) to your personal Ethereum wallet (&quot;Wallet&quot; column).">
-                                                    Withdraw
+                                                    Cache OUT
                                                 </button>
                                             </td>
                                         </tr>
@@ -259,7 +283,7 @@
                                 </table>
                             </div>
 
-                            <div role="tabpanel" class="tab-pane" id="transfer">
+                            <div role="tabpanel" class="tab-pane fade" id="transfer">
                                 <table class="table table-borderless table-balances">
                                     <thead>
                                         <tr>
@@ -270,10 +294,11 @@
                                             <th data-toggle="tooltip" data-placement="bottom" title="" data-original-title="This is the balance you have deposited from your personal Ethereum wallet to the {{ appTitle }} smart contract.">{{ appTitle }}</th>
                                         </tr>
                                     </thead>
+
                                     <tbody>
                                         <tr>
                                             <td>
-                                                <a href="javascript://">ZeroGold</a>
+                                                <a href="javascript://" class="nowrap">ZeroGold</a>
                                             </td>
                                             <td>
                                                 <span data-toggle="tooltip" data-placement="bottom" title="" data-original-title="0.000000000000">0.000</span>
@@ -282,6 +307,7 @@
                                                 <span data-toggle="tooltip" data-placement="bottom" title="" data-original-title="0.000000000000">0.000</span>
                                             </td>
                                         </tr>
+
                                         <tr>
                                             <td colspan="3">
                                                 <div class="balance-inline-form">
@@ -297,6 +323,7 @@
                                                 </div>
                                             </td>
                                         </tr>
+
                                         <tr class="balance-form">
                                             <td colspan="3">
                                                 <button type="button" class="btn btn-info btn-sm balance-below" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Use this to transfer from your personal Ethereum wallet (&quot;Wallet&quot; column) to any other wallet.">
@@ -304,9 +331,10 @@
                                                 </button>
                                             </td>
                                         </tr>
+
                                         <tr>
                                             <td>
-                                                <a href="javascript://">ETH</a>
+                                                <a href="javascript://" class="nowrap">DAI Stablecoin</a>
                                             </td>
                                             <td>
                                                 <span data-toggle="tooltip" data-placement="bottom" title="" data-original-title="0.013068495718">0.013</span>
@@ -315,6 +343,7 @@
                                                 <span data-toggle="tooltip" data-placement="bottom" title="" data-original-title="0.000000000000">0.000</span>
                                             </td>
                                         </tr>
+
                                         <tr>
                                             <td colspan="3">
                                                 <div class="balance-inline-form">
@@ -330,6 +359,7 @@
                                                 </div>
                                             </td>
                                         </tr>
+
                                         <tr class="balance-form">
                                             <td colspan="3">
                                                 <button type="button" class="btn btn-info btn-sm balance-below" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Use this to transfer from your personal Ethereum wallet (&quot;Wallet&quot; column) to any other wallet.">
@@ -343,17 +373,17 @@
                         </div>
 
                         <div class="balance-warning">
-                            <p>
+                            <p class="text-danger text-center"><small>
                                 Make sure <a href="javascript://">ZeroGold</a> is the token you actually want to trade.
                                 Multiple tokens can share the same name.
-                            </p>
+                            </small></p>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="component">
-                <div class="component-header">Buy / Sell</div>
+                <div class="component-header text-warning">Buy / Sell</div>
 
                 <div class="component-tabs nav-header">
                     <ul class="nav" role="tablist">
@@ -463,7 +493,7 @@
 
         <div class="vertical">
             <div class="component component-full">
-                <div class="component-header">Order Book</div>
+                <div class="component-header text-warning">Order Book</div>
                 <div id="orders">
                     <div id="orderBookScroll">
                         <table class="table table-condensed table-borderless">
@@ -486,7 +516,7 @@
 
         <div class="vertical-split">
             <div class="component">
-                <div class="component-header">Price Chart</div>
+                <div class="component-header text-warning">Price Chart</div>
                 <div id="chartPrice">
                     <div class="chart-quote">
                         <div></div>
@@ -520,7 +550,7 @@
             </div>
 
             <div class="component">
-                <div class="component-header">Your Transactions</div>
+                <div class="component-header text-warning">Your Transactions</div>
                 <div class="component-tabs nav-header">
                     <ul class="nav" role="tablist">
                         <li role="presentation" class="nav-item">
@@ -605,7 +635,7 @@
 
         <div class="vertical-split">
             <div class="component">
-                <div class="component-header">Trades &amp; Volume</div>
+                <div class="component-header text-warning">Trades &amp; Volume</div>
                 <div class="component-tabs nav-header">
                     <ul class="nav" role="tablist">
                         <li role="presentation" class="nav-item">
@@ -760,9 +790,7 @@
             </div> <!-- component -->
 
             <div class="component">
-                <div class="component-header">
-                    <span>Updates</span>
-                </div>
+                <div class="component-header text-warning"><span>Updates</span></div>
 
                 <div class="component-tabs nav-header">
                     <ul class="nav" role="tablist">
@@ -789,7 +817,7 @@
 
                             <p>
                                 Do not send your tokens directly to the smart contract, or they will be lost and unrecoverable.
-                                Use the Deposit form (upper-left) to send the proper deposit transaction.
+                                Use the Cache IN form (upper-left) to send the proper deposit transaction.
                             </p>
 
                             <p>
